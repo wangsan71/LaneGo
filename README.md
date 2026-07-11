@@ -2,12 +2,6 @@
 
 LaneGo 是一個專注於「車道級導航」的輕量網頁應用，目前以澳門道路為初始資料，未來目標是支援全球各地的車道導航。
 
-## 線上即點即用
-
-👉 **https://你的帳號.github.io/LaneGo/**
-
-> 請將 `你的帳號` 換成你的 GitHub 使用者名稱，並在 GitHub Repo 的 **Settings → Pages** 啟用 GitHub Pages（Source 選擇 `GitHub Actions`）。
-
 ## 主要功能
 
 - 依據 GPS 位置自動判斷最近道路與行車方向
