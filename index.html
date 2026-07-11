@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>LaneGo - 車道導航</title>
+
+    <!-- Maplibre GL CSS -->
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            font-family: "Microsoft JhengHei", "PingFang TC", "Helvetica Neue", Arial, sans-serif;
+            background: #e5e5e5;
+        }
+
+        #map {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+        }
+
+        /* 上方車道方向卡片 */
+        .lane-direction-card {
+            position: absolute;
+            top: 16px;
+            left: 140px;
+            right: 16px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-radius: 16px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
+            padding: 12px 16px;
+            min-width: auto;
+            max-width: none;
+            backdrop-filter: blur(6px);
+            text-align: center;
+        }
+
+        .road-name {
+            font-size: 13px;
+            color: #5f6368;
+            margin-bottom: 6px;
+        }
+
+        .road-name strong {
+            color: #202124;
+        }
+
+        .lanes-row {
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lane-box {
+            background: #f1f3f4;
+            border-radius: 12px;
+            padding: 8px 10px;
+            min-width: 58px;
+            text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
+            transition: all 0.25s ease;
+        }
+
+        .lane-box.current {
+            background: #e8f0fe;
+            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.35);
+        }
+
+        .lane-arrow {
+            font-size: 30px;
+            line-height: 1;
+            color: #1a73e8;
+            transition: transform 0.15s ease;
+        }
+
+        .lane-label {
+            font-size: 11px;
+            color: #3c4043;
+            margin-top: 2px;
+        }
+
+        .lane-number {
+            font-size: 10px;
+            color: #80868b;
+            margin-top: 2px;
+        }
+
+        .no-road {
+            color: #5f6368;
+            font-size: 14px;
+            padding: 8px 0;
+        }
+
+        /* 左上角 App 標籤 */
+        .app-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            z-index: 1000;
+            background: rgba(26, 115, 232, 0.95);
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        /* 資訊卡片 */
+        .info-card {
+            position: absolute;
+            bottom: 48px;
+            left: 16px;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+            padding: 10px 14px;
+            font-size: 12px;
+            color: #3c4043;
+            max-width: 200px;
+        }
+
+        .info-card strong {
+            color: #1a73e8;
+        }
+
+        /* 定位按鈕 */
+        .locate-btn {
+            position: absolute;
+            bottom: 24px;
+            right: 72px;
+            z-index: 1000;
+            width: 52px;
+            height: 52px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            font-size: 24px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.15s ease;
+        }
+
+        .locate-btn:active {
+            transform: scale(0.92);
+        }
+
+        .locate-btn.active {
+            background: #1a73e8;
+            color: white;
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0.5); }
+            70% { box-shadow: 0 0 0 12px rgba(26, 115, 232, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(26, 115, 232, 0); }
+        }
+
+        /* 方向感應器切換按鈕 */
+        .orient-btn {
+            position: absolute;
+            bottom: 90px;
+            right: 72px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            border: none;
+            border-radius: 50%;
+            background: #1a73e8;
+            color: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            font-size: 22px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.15s ease;
+        }
+
+        .orient-btn:active {
+            transform: scale(0.92);
+        }
+
+        .orient-btn.off {
+            background: #9aa0a6;
+        }
+
+        /* 指南針環 */
+        .compass-ring {
+            position: absolute;
+            bottom: 160px;
+            right: 72px;
+            z-index: 1000;
+            width: 48px;
+            height: 48px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .compass-ring.active {
+            opacity: 0.7;
+        }
+
+        .compass-ring svg {
+            width: 100%;
+            height: 100%;
+            transform-origin: center;
+            transition: transform 0.1s linear;
+        }
+
+        /* 小螢幕微調：避免車道卡片過窄 */
+        @media (max-width: 380px) {
+            .app-badge {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+
+            .lane-direction-card {
+                left: 120px;
+                padding: 10px 12px;
+            }
+
+            .lane-arrow {
+                font-size: 24px;
+            }
+
+            .lane-label {
+                font-size: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 全屏地圖 -->
+    <div id="map"></div>
+
+    <!-- 左上角 App 標籤 -->
+    <div class="app-badge">LaneGo</div>
+
+    <!-- 上方多車道方向 -->
+    <div class="lane-direction-card" id="laneCard">
+        <div class="road-name" id="roadName">載入道路資料中…</div>
+        <div class="lanes-row" id="lanesRow">
+            <div class="no-road">請稍候</div>
+        </div>
+    </div>
+
+    <!-- 資訊卡片 -->
+    <div class="info-card">
+        <div>狀態：<strong id="gpsStatus">未定位</strong></div>
+        <div>GPS 航向：<strong id="headingValue">--</strong>°</div>
+        <div>裝置方向：<strong id="orientValue">--</strong>°</div>
+        <div>地圖旋轉：<strong id="mapBearing">--</strong>°</div>
+        <div>最近道路：<strong id="nearestRoad">--</strong></div>
+    </div>
+
+    <!-- 指南針環 -->
+    <div class="compass-ring" id="compassRing">
+        <svg viewBox="0 0 48 48">
+            <circle cx="24" cy="24" r="20" fill="none" stroke="#333" stroke-width="2"/>
+            <path d="M24 6 L28 18 L24 14 L20 18 Z" fill="#ea4335"/>
+            <path d="M24 42 L28 30 L24 34 L20 30 Z" fill="#9aa0a6"/>
+        </svg>
+    </div>
+
+    <!-- 方向感應器切換 -->
+    <button class="orient-btn" id="orientBtn" title="裝置方向感應（預設開啟）">🧭</button>
+
+    <!-- 定位按鈕 -->
+    <button class="locate-btn" id="locateBtn" title="開始/停止定位">📍</button>
+
+    <!-- Maplibre GL JS -->
+    <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+
+    <script>
+        // ========== 地圖初始化（澳門中心） ==========
+        const macauCenter = [113.5439, 22.1987]; // Maplibre 用 [lng, lat]
+
+        const map = new maplibregl.Map({
+            container: 'map',
+            style: 'https://tiles.openfreemap.org/styles/bright',
+            center: macauCenter,
+            zoom: 13,
+            pitch: 0,
+            bearing: 0,
+            attributionControl: false
+        });
+
+        map.addControl(new maplibregl.AttributionControl({ compact: true }), 'bottom-left');
+        map.addControl(new maplibregl.NavigationControl({ showCompass: true }), 'bottom-right');
+
+        // 只保留醫療、停車場、駕駛相關 POI；隱藏商店、餐飲、巴士站等
+        function applyPoiFilter() {
+            const poiLayers = ['poi_r20', 'poi_r7', 'poi_r1'];
+            const keepClasses = ['hospital', 'pharmacy', 'parking', 'car', 'fuel'];
+            const keepSubclasses = [
+                'hospital', 'pharmacy', 'doctors', 'dentist', 'veterinary', 'clinic',
+                'parking', 'parking_garage',
+                'car', 'car_repair', 'car_parts', 'fuel', 'taxi', 'ferry_terminal', 'charging_station'
+            ];
+            const keepFilter = ['any',
+                ['match', ['get', 'class'], keepClasses, true, false],
+                ['match', ['get', 'subclass'], keepSubclasses, true, false]
+            ];
+
+            poiLayers.forEach(layerId => {
+                if (!map.getLayer(layerId)) return;
+                const existing = map.getFilter(layerId) || ['all'];
+                const conditions = existing.slice(1);
+                map.setFilter(layerId, ['all', ...conditions, keepFilter]);
+            });
+
+            // poi_transit 隱藏巴士站，保留機場與鐵路
+            if (map.getLayer('poi_transit')) {
+                map.setFilter('poi_transit', ['match', ['get', 'class'], ['rail', 'airport'], true, false]);
+            }
+        }
+
+        const carMarker = new maplibregl.Marker({
+            element: (() => {
+                const div = document.createElement('div');
+                div.innerHTML = '🚗';
+                div.style.fontSize = '32px';
+                div.style.lineHeight = '1';
+                div.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
+                return div;
+            })()
+        }).setLngLat(macauCenter).addTo(map);
+        carMarker.getElement().style.display = 'none';
+
+        // ========== 載入道路資料 ==========
+        let roadDatabase = [];
+
+        async function loadRoadData() {
+            try {
+                const res = await fetch('macau_roads.json');
+                roadDatabase = await res.json();
+                renderRoadsOnMap();
+                renderGpsWaiting();
+            } catch (e) {
+                document.getElementById('roadName').innerHTML = '無法載入道路資料';
+                document.getElementById('lanesRow').innerHTML = '<div class="no-road">請確認 macau_roads.json 存在</div>';
+                console.error(e);
+            }
+        }
+
+        function roadToGeoJSON(roads) {
+            return {
+                type: 'FeatureCollection',
+                features: roads.map(road => ({
+                    type: 'Feature',
+                    properties: { id: road.id, name: road.name },
+                    geometry: {
+                        type: 'LineString',
+                        coordinates: road.path.map(p => [p[1], p[0]]) // [lng, lat]
+                    }
+                }))
+            };
+        }
+
+        function renderRoadsOnMap() {
+            map.addSource('roads', {
+                type: 'geojson',
+                data: roadToGeoJSON(roadDatabase)
+            });
+
+            map.addLayer({
+                id: 'roads-layer',
+                type: 'line',
+                source: 'roads',
+                paint: {
+                    'line-color': '#1a73e8',
+                    'line-width': 4,
+                    'line-opacity': 0.5
+                }
+            });
+        }
+
+        function renderGpsWaiting() {
+            roadNameEl.innerHTML = '<strong>尚未定位</strong>';
+            lanesRowEl.innerHTML = '<div class="no-road">請開啓定位以確定位置</div>';
+            gpsStatusEl.textContent = '未定位';
+            carMarker.getElement().style.display = 'none';
+        }
+
+        // ========== 工具函式 ==========
+        function toRad(deg) { return deg * Math.PI / 180; }
+        function toDeg(rad) { return rad * 180 / Math.PI; }
+        function normalizeAngle(deg) { return ((deg % 360) + 360) % 360; }
+
+        function bearing(lat1, lng1, lat2, lng2) {
+            const dLon = toRad(lng2 - lng1);
+            const y = Math.sin(dLon) * Math.cos(toRad(lat2));
+            const x = Math.cos(toRad(lat1)) * Math.sin(toRad(lat2)) -
+                      Math.sin(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.cos(dLon);
+            let brng = toDeg(Math.atan2(y, x));
+            return normalizeAngle(brng);
+        }
+
+        function distance(lat1, lng1, lat2, lng2) {
+            const R = 6371000;
+            const dLat = toRad(lat2 - lat1);
+            const dLon = toRad(lng2 - lng1);
+            const a = Math.sin(dLat / 2) ** 2 +
+                      Math.cos(toRad(lat1)) * Math.cos(toRad(lat2)) * Math.sin(dLon / 2) ** 2;
+            const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+            return R * c;
+        }
+
+        function pointToSegmentDistance(px, py, x1, y1, x2, y2) {
+            const A = px - x1;
+            const B = py - y1;
+            const C = x2 - x1;
+            const D = y2 - y1;
+            const dot = A * C + B * D;
+            const lenSq = C * C + D * D;
+            let param = -1;
+            if (lenSq !== 0) param = dot / lenSq;
+
+            let xx, yy;
+            if (param < 0) { xx = x1; yy = y1; }
+            else if (param > 1) { xx = x2; yy = y2; }
+            else { xx = x1 + param * C; yy = y1 + param * D; }
+
+            return distance(px, py, xx, yy);
+        }
+
+        function roadBearing(road) {
+            const p1 = road.path[0];
+            const p2 = road.path[road.path.length - 1];
+            return bearing(p1[0], p1[1], p2[0], p2[1]);
+        }
+
+        function findNearestRoad(lat, lng) {
+            let best = null;
+            let minDist = Infinity;
+
+            roadDatabase.forEach(road => {
+                for (let i = 0; i < road.path.length - 1; i++) {
+                    const p1 = road.path[i];
+                    const p2 = road.path[i + 1];
+                    const dist = pointToSegmentDistance(lat, lng, p1[0], p1[1], p2[0], p2[1]);
+                    if (dist < minDist) {
+                        minDist = dist;
+                        best = { road, segmentIndex: i, distance: dist };
+                    }
+                }
+            });
+
+            return best;
+        }
+
+        // 計算裝置指南針方向（Android 適用）
+        function compassHeading(alpha, beta, gamma) {
+            const degtorad = Math.PI / 180;
+            const _x = beta ? beta * degtorad : 0;
+            const _y = gamma ? gamma * degtorad : 0;
+            const _z = alpha ? alpha * degtorad : 0;
+
+            const cX = Math.cos(_x);
+            const cY = Math.cos(_y);
+            const cZ = Math.cos(_z);
+            const sX = Math.sin(_x);
+            const sY = Math.sin(_y);
+            const sZ = Math.sin(_z);
+
+            const Vx = -cZ * sY - sZ * sX * cY;
+            const Vy = -sZ * sY + cZ * sX * cY;
+
+            let heading = Math.atan(Vx / Vy);
+
+            if (Vy < 0) {
+                heading += Math.PI;
+            } else if (Vx < 0) {
+                heading += 2 * Math.PI;
+            }
+
+            return normalizeAngle(heading * (180 / Math.PI));
+        }
+
+        // ========== 車道顯示 ==========
+        const roadNameEl = document.getElementById('roadName');
+        const lanesRowEl = document.getElementById('lanesRow');
+        const headingValueEl = document.getElementById('headingValue');
+        const orientValueEl = document.getElementById('orientValue');
+        const mapBearingEl = document.getElementById('mapBearing');
+        const nearestRoadEl = document.getElementById('nearestRoad');
+        const gpsStatusEl = document.getElementById('gpsStatus');
+
+        let lastPositions = [];
+        let deviceHeading = null;
+        let smoothedDeviceHeading = null;
+        let orientationEnabled = false; // 預設關閉，避免指南針偏差干擾
+        let orientationOffset = 0; // 用移動修正的偏差值
+        let lastOrientationUpdate = 0;
+        let lastGpsUpdate = 0;
+        const ORIENTATION_THROTTLE_MS = 500; // 方向更新間隔
+        const ORIENTATION_SMOOTHING = 0.12;  // 指數平滑係數（越小越慢越穩）
+        const GPS_THROTTLE_MS = 500;         // GPS 顯示更新間隔
+
+        function renderLanes(road, direction, currentLaneIndex = 0) {
+            const lanes = direction === 'forward' ? road.lanesForward : road.lanesBackward;
+            const dirText = direction === 'forward' ? '順向' : '反向';
+
+            roadNameEl.innerHTML = `<strong>${road.name}</strong> · ${dirText} · ${lanes.length} 車道`;
+            lanesRowEl.innerHTML = '';
+
+            lanes.forEach((lane, index) => {
+                const box = document.createElement('div');
+                box.className = 'lane-box' + (index === currentLaneIndex ? ' current' : '');
+                box.innerHTML = `
+                    <div class="lane-arrow">${lane.icon}</div>
+                    <div class="lane-label">${lane.label}</div>
+                    <div class="lane-number">第 ${index + 1} 車道</div>
+                `;
+                lanesRowEl.appendChild(box);
+            });
+        }
+
+        function renderNoRoad() {
+            roadNameEl.innerHTML = '未在道路資料範圍內';
+            lanesRowEl.innerHTML = '<div class="no-road">目前不在道路上</div>';
+        }
+
+        function highlightRoad(road, direction) {
+            const coordinates = direction === 'forward'
+                ? road.path.map(p => [p[1], p[0]])
+                : [...road.path].reverse().map(p => [p[1], p[0]]);
+
+            const geojson = {
+                type: 'FeatureCollection',
+                features: [{
+                    type: 'Feature',
+                    properties: {},
+                    geometry: { type: 'LineString', coordinates }
+                }]
+            };
+
+            if (map.getSource('highlight')) {
+                map.getSource('highlight').setData(geojson);
+            } else {
+                map.addSource('highlight', { type: 'geojson', data: geojson });
+                map.addLayer({
+                    id: 'highlight-layer',
+                    type: 'line',
+                    source: 'highlight',
+                    paint: {
+                        'line-color': '#ea4335',
+                        'line-width': 7,
+                        'line-opacity': 0.9
+                    }
+                });
+            }
+        }
+
+        function updateDisplay(lat, lng, gpsHeading) {
+            const nearest = findNearestRoad(lat, lng);
+            nearestRoadEl.textContent = nearest ? `${nearest.road.name} (${Math.round(nearest.distance)}m)` : '無';
+
+            // 顯示 GPS 航向
+            headingValueEl.textContent = gpsHeading !== null && !isNaN(gpsHeading) ? Math.round(gpsHeading) : '--';
+
+            if (!nearest || nearest.distance > 120) {
+                renderNoRoad();
+                return;
+            }
+
+            // 決定使用哪個航向：GPS 航向優先，其次修正後的裝置方向，最後用位置推估
+            let effectiveHeading = null;
+            let headingSource = '';
+
+            if (gpsHeading !== null && !isNaN(gpsHeading)) {
+                effectiveHeading = gpsHeading;
+                headingSource = 'GPS';
+            } else if (orientationEnabled && smoothedDeviceHeading !== null && !isNaN(smoothedDeviceHeading)) {
+                effectiveHeading = normalizeAngle(smoothedDeviceHeading - orientationOffset);
+                headingSource = '裝置方向';
+            } else if (lastPositions.length >= 2) {
+                const prev = lastPositions[lastPositions.length - 2];
+                effectiveHeading = bearing(prev.lat, prev.lng, lat, lng);
+                headingSource = '移動推估';
+            } else {
+                effectiveHeading = roadBearing(nearest.road);
+                headingSource = '道路預設';
+            }
+
+            const rb = roadBearing(nearest.road);
+            let diff = Math.abs(normalizeAngle(effectiveHeading - rb));
+            if (diff > 180) diff = 360 - diff;
+
+            // 用 GPS 航向校正裝置方向偏差（移動時才校正）
+            if (orientationEnabled && smoothedDeviceHeading !== null && gpsHeading !== null && !isNaN(gpsHeading)) {
+                const rawDiff = normalizeAngle(smoothedDeviceHeading - gpsHeading);
+                // 只在校正值穩定時更新，避免跳動
+                orientationOffset = orientationOffset * 0.9 + rawDiff * 0.1;
+            }
+
+            const direction = diff <= 90 ? 'forward' : 'backward';
+            renderLanes(nearest.road, direction, 0);
+            highlightRoad(nearest.road, direction);
+        }
+
+        // ========== 裝置方向感應 ==========
+        const orientBtn = document.getElementById('orientBtn');
+        const compassRing = document.getElementById('compassRing');
+        const compassSvg = compassRing.querySelector('svg');
+
+        function rotateMapToHeading(heading) {
+            if (heading === null || isNaN(heading)) return;
+            // Maplibre bearing: 0 = north, clockwise
+            // Device heading: 0 = north, clockwise
+            // We want the direction the phone is facing to be at the top of the screen
+            map.easeTo({ bearing: heading, duration: 300, easing: t => t });
+            mapBearingEl.textContent = Math.round(heading);
+        }
+
+        function handleOrientation(event) {
+            const now = Date.now();
+            if (now - lastOrientationUpdate < ORIENTATION_THROTTLE_MS) return;
+            lastOrientationUpdate = now;
+
+            let heading = null;
+
+            // Android Chrome 通常用 alpha/beta/gamma 計算
+            if (event.alpha !== null || event.beta !== null || event.gamma !== null) {
+                heading = compassHeading(event.alpha, event.beta, event.gamma);
+            }
+
+            // iOS webkitCompassHeading（保留備用）
+            if (event.webkitCompassHeading !== undefined && !isNaN(event.webkitCompassHeading)) {
+                heading = event.webkitCompassHeading;
+            }
+
+            if (heading !== null && !isNaN(heading)) {
+                deviceHeading = heading;
+
+                // 指數平滑：讓指南針不會跳來跳去
+                if (smoothedDeviceHeading === null) {
+                    smoothedDeviceHeading = heading;
+                } else {
+                    // 處理 0/360 度跨越
+                    let diff = normalizeAngle(heading - smoothedDeviceHeading);
+                    if (diff > 180) diff -= 360;
+                    smoothedDeviceHeading = normalizeAngle(smoothedDeviceHeading + diff * ORIENTATION_SMOOTHING);
+                }
+
+                const correctedHeading = normalizeAngle(smoothedDeviceHeading - orientationOffset);
+                orientValueEl.textContent = `${Math.round(smoothedDeviceHeading)} (修正 ${Math.round(orientationOffset)})`;
+                compassSvg.style.transform = `rotate(${-correctedHeading}deg)`;
+                rotateMapToHeading(correctedHeading);
+
+                // 如果已有位置，更新車道顯示
+                if (lastPositions.length > 0) {
+                    const last = lastPositions[lastPositions.length - 1];
+                    updateDisplay(last.lat, last.lng, null);
+                }
+            }
+        }
+
+        function startOrientation() {
+            orientationEnabled = true;
+            smoothedDeviceHeading = null;
+            orientationOffset = 0;
+            orientBtn.classList.remove('off');
+            compassRing.classList.add('active');
+            window.addEventListener('deviceorientation', handleOrientation, true);
+            orientValueEl.textContent = '啟用中';
+        }
+
+        function stopOrientation() {
+            orientationEnabled = false;
+            window.removeEventListener('deviceorientation', handleOrientation, true);
+            deviceHeading = null;
+            smoothedDeviceHeading = null;
+            orientValueEl.textContent = '已關閉';
+            compassRing.classList.remove('active');
+            map.setBearing(0);
+            mapBearingEl.textContent = 0;
+        }
+
+        orientBtn.addEventListener('click', () => {
+            if (orientationEnabled) {
+                stopOrientation();
+            } else {
+                startOrientation();
+                if (watchId === null) {
+                    alert('方向感應已開啟，建議同時點擊 📍 開始 GPS 定位。');
+                }
+            }
+        });
+
+        // ========== GPS 定位 ==========
+        let watchId = null;
+        const locateBtn = document.getElementById('locateBtn');
+
+        function stopGps() {
+            if (watchId !== null) {
+                navigator.geolocation.clearWatch(watchId);
+                watchId = null;
+            }
+            locateBtn.classList.remove('active');
+            gpsStatusEl.textContent = '已停止';
+            carMarker.getElement().style.display = 'none';
+        }
+
+        function startGps() {
+            if (!navigator.geolocation) {
+                alert('您的瀏覽器不支援定位功能。');
+                return;
+            }
+
+            const isSecure = location.protocol === 'https:' || location.hostname === 'localhost' || location.hostname === '127.0.0.1';
+            if (!isSecure) {
+                alert('Android Chrome 也必須使用 HTTPS 才能定位，請改用 https:// 網址存取。');
+                return;
+            }
+
+            if (watchId !== null) {
+                stopGps();
+                return;
+            }
+
+            locateBtn.classList.add('active');
+            gpsStatusEl.textContent = '定位中…';
+
+            watchId = navigator.geolocation.watchPosition(
+                (pos) => {
+                    const lat = pos.coords.latitude;
+                    const lng = pos.coords.longitude;
+                    const heading = pos.coords.heading;
+                    const now = Date.now();
+
+                    lastPositions.push({ lat, lng, time: now });
+                    if (lastPositions.length > 5) lastPositions.shift();
+
+                    carMarker.getElement().style.display = 'block';
+                    carMarker.setLngLat([lng, lat]);
+                    map.setCenter([lng, lat]);
+
+                    // 節流：GPS 顯示更新不要太快
+                    if (now - lastGpsUpdate >= GPS_THROTTLE_MS) {
+                        lastGpsUpdate = now;
+                        updateDisplay(lat, lng, heading);
+                    }
+
+                    gpsStatusEl.textContent = '定位中';
+                },
+                (err) => {
+                    // 不彈 alert，使用者可能已關閉權限或暫時無訊號
+                    // watchPosition 會持續嘗試，所以這裡只更新狀態
+                    let status = '定位失敗';
+                    if (err.code === 1) status = '等待定位權限';
+                    else if (err.code === 2) status = 'GPS 訊號弱';
+                    else if (err.code === 3) status = '定位逾時';
+                    gpsStatusEl.textContent = status;
+                    console.log('GPS error:', err.code, err.message);
+                },
+                { enableHighAccuracy: true, timeout: 10000, maximumAge: 0 }
+            );
+        }
+
+        locateBtn.addEventListener('click', startGps);
+
+        // 啟動
+        map.on('load', () => {
+            applyPoiFilter();
+            loadRoadData();
+        });
+        // 方向感應預設關閉，避免指南針偏差干擾；使用者可按 🧭 開啟
+        orientBtn.classList.add('off');
+        compassRing.classList.remove('active');
+        orientValueEl.textContent = '已關閉';
+    </script>
+</body>
+</html>

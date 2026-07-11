@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Local development certificates
+cert.pem
+key.pem
+
+# Raw / large data files not needed for the live site
+macau_osm_fr.json
+*.osm
+*.pbf
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local
