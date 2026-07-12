@@ -81,6 +81,7 @@
     <div class="btn-row">
         <button id="btnAddPt" class="btn-outline" style="color:#ea4335">➕ 延伸🔴順向終點</button>
         <button id="btnExtBwd" class="btn-outline" style="color:#1a73e8">➕ 延伸🔵反向起點</button>
+        <button id="btnInsertPt" class="btn-outline" style="color:#0d904f">➕ 新增路徑點</button>
         <button id="btnRmPt" class="btn-outline">✕ 刪除端點</button>
     </div>
     <div class="btn-row">
@@ -116,7 +117,7 @@ function ptSegDist(px,py,x1,y1,x2,y2){const A=px-x1,B=py-y1,C=x2-x1,D=y2-y1;cons
 function findNearestRoad(lat,lng){let best=null,min=Infinity;roadDB.forEach(r=>{for(let i=0;i<r.path.length-1;i++){const p1=r.path[i],p2=r.path[i+1];const d=ptSegDist(lat,lng,p1[0],p1[1],p2[0],p2[1]);if(d<min){min=d;best=r}}});return best?{road:best,distance:Math.round(min)}:null}
 
 // ══════ 狀態 ══════
-let roadDB=[],map,selected=null,splitMode=false,mergeMode=false,extendEnd=null,dragIdx=-1;
+ let roadDB=[],map,selected=null,splitMode=false,mergeMode=false,extendEnd=null,insertPointMode=false,dragIdx=-1;
 let drawingMode=false,drawingPts=[];
 let editFwd=[],editBwd=[];
 const STORAGE='lanego_overrides';
@@ -233,13 +234,13 @@ function updateInfo(){infoBar.textContent=`${roadDB.length} 路段 | ${new Set(r
 // ══════ 面板 ══════
 function selectRoad(road){
     selected=road;editFwd=road.lanesForward.map(l=>({...l}));editBwd=road.lanesBackward.map(l=>({...l}));
-    splitMode=false;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';
+    splitMode=false;insertPointMode=false;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';$('btnInsertPt').textContent='➕ 新增路徑點';
     renderPanel();panel.classList.remove('hidden');highlight(road);
     panelTitle.textContent='✏️ '+road.name;
     panelMeta.innerHTML=`ID: ${road.id} | ${road.length}m | ${road.highway||'?'} | 座標點: ${road.path.length}`;
 }
 
-function dismiss(){panel.classList.add('hidden');selected=null;splitMode=false;mergeMode=false;drawingMode=false;extendEnd=null;dragIdx=-1;splitDot.style.display='none';$('btnMerge').textContent='🔗 合併路線';$('btnNewRoad').textContent='➕ 新增路線';if($('btnFinishDraw'))$('btnFinishDraw').style.display='none';if(map.getSource('hl'))map.getSource('hl').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-j'))map.getSource('hl-j').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-allpts'))map.getSource('hl-allpts').setData({type:'FeatureCollection',features:[]})}
+function dismiss(){panel.classList.add('hidden');selected=null;splitMode=false;insertPointMode=false;mergeMode=false;drawingMode=false;extendEnd=null;dragIdx=-1;splitDot.style.display='none';$('btnMerge').textContent='🔗 合併路線';$('btnNewRoad').textContent='➕ 新增路線';$('btnInsertPt').textContent='➕ 新增路徑點';if($('btnFinishDraw'))$('btnFinishDraw').style.display='none';if(map.getSource('hl'))map.getSource('hl').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-j'))map.getSource('hl-j').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-allpts'))map.getSource('hl-allpts').setData({type:'FeatureCollection',features:[]})}
 
 function renderPanel(){
     if(!selected)return;
@@ -303,7 +304,7 @@ $('btnDismiss').onclick=dismiss;
 // ══════ 路徑點編輯（從路口端點延伸）══════
 function startExtend(end){
     if(extendEnd===end){extendEnd=null;$('btnAddPt').textContent='➕ 延伸🔴順向終點';$('btnExtBwd').textContent='➕ 延伸🔵反向起點';t('已退出延伸模式');return}
-    extendEnd=end;splitMode=false;
+    extendEnd=end;splitMode=false;insertPointMode=false;$('btnInsertPt').textContent='➕ 新增路徑點';
     const label=end==='fwd'?'🔴順向終點':'🔵反向起點';
     $('btnAddPt').textContent=end==='fwd'?'✕ 取消延伸':'➕ 延伸🔴順向終點';
     $('btnExtBwd').textContent=end==='bwd'?'✕ 取消延伸':'➕ 延伸🔵反向起點';
@@ -312,6 +313,18 @@ function startExtend(end){
 
 $('btnAddPt').onclick=()=>{if(!selected)return;startExtend('fwd')};
 $('btnExtBwd').onclick=()=>{if(!selected)return;startExtend('bwd')};
+$('btnInsertPt').onclick=function(){
+    if(!selected)return;
+    insertPointMode=!insertPointMode;
+    if(insertPointMode){
+        splitMode=false;extendEnd=null;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';
+        this.textContent='✕ 取消新增路徑點';
+        t('請點擊原有道路上的位置新增路徑點');
+    }else{
+        this.textContent='➕ 新增路徑點';
+        t('已退出新增路徑點模式');
+    }
+};
 $('btnRmPt').onclick=()=>{
     if(!selected)return;
     if(selected.path.length<=2){
@@ -364,14 +377,14 @@ $('btnClearAll').onclick=()=>{if(!confirm('確定清除所有暫存修正？'))r
 // ══════ 切分 ══════
 $('btnSplit').onclick=function(){
     if(splitMode){splitMode=false;splitDot.style.display='none';this.textContent='🔪 在此切分路段';t('已取消切分');return}
-    splitMode=true;this.textContent='✕ 取消（點擊地圖設定切分點）';t('請點擊地圖上要切分的位置');
+    splitMode=true;insertPointMode=false;$('btnInsertPt').textContent='➕ 新增路徑點';this.textContent='✕ 取消（點擊地圖設定切分點）';t('請點擊地圖上要切分的位置');
 };
 
 // ══════ 合併路線 ══════
 $('btnMerge').onclick=function(){
     if(mergeMode){mergeMode=false;this.textContent='🔗 合併路線';t('已取消合併模式');return}
     if(!selected){t('請先選取一條路線');return}
-    mergeMode=true;splitMode=false;extendEnd=null;splitDot.style.display='none';
+    mergeMode=true;splitMode=false;insertPointMode=false;extendEnd=null;splitDot.style.display='none';$('btnInsertPt').textContent='➕ 新增路徑點';
     this.textContent='✕ 取消（點擊地圖上的另一條路線合併）';
     t('請點擊地圖上要合併的另一條路線');
 };
@@ -501,7 +514,7 @@ map.getCanvas().style.cursor='crosshair';
 function ptNear(e,pt){const px=map.project([pt[1],pt[0]]);const dx=px.x-e.point.x,dy=px.y-e.point.y;return Math.sqrt(dx*dx+dy*dy)<14}
 
 map.on('mousedown',e=>{
-    if(!selected||splitMode||mergeMode||drawingMode||extendEnd||e.originalEvent.button!==0)return;
+    if(!selected||splitMode||insertPointMode||mergeMode||drawingMode||extendEnd||e.originalEvent.button!==0)return;
     for(let i=0;i<selected.path.length;i++){
         if(ptNear(e,selected.path[i])){dragIdx=i;e.preventDefault();map.getCanvas().style.cursor='grabbing';return}
     }
@@ -540,6 +553,20 @@ map.on('click',e=>{
         return;
     }
 
+    if(insertPointMode&&selected){
+        const best=nearestPathPosition(selected.path,lat,lng);
+        if(!best){t('找不到可新增的路段位置');return}
+        if(best.distance>50){t(`新增點距離路段 ${Math.round(best.distance)}m，請點擊道路上`);return}
+        if(best.ratio<=0.001||best.ratio>=0.999){t('位置太靠近現有端點，請直接拖動原有端點');return}
+        selected.path.splice(best.segmentIndex+1,0,best.point);
+        refreshRoadLength(selected);
+        insertPointMode=false;$('btnInsertPt').textContent='➕ 新增路徑點';
+        renderRoads();highlight(selected);updateInfo();
+        panelMeta.innerHTML=`ID: ${selected.id} | ${selected.length}m | ${selected.highway||'?'} | 座標點: ${selected.path.length}`;
+        t(`✅ 已新增路徑點，共 ${selected.path.length} 個點；可拖動灰色點貼合地圖`);
+        return;
+    }
+
     if(splitMode&&selected){
          const best=nearestPathPosition(selected.path,lat,lng);
          if(!best){t('找不到可切分的路段');return}
@@ -554,7 +581,7 @@ map.on('click',e=>{
          refreshRoadLength(s1);refreshRoadLength(s2);
         const oi=roadDB.indexOf(selected);if(oi>=0)roadDB.splice(oi,1,s1,s2);
         renderRoads();updateInfo();
-    splitMode=false;extendEnd=null;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';$('btnAddPt').textContent='➕ 延伸🔴順向終點';$('btnExtBwd').textContent='➕ 延伸🔵反向起點';
+     splitMode=false;insertPointMode=false;extendEnd=null;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';$('btnInsertPt').textContent='➕ 新增路徑點';$('btnAddPt').textContent='➕ 延伸🔴順向終點';$('btnExtBwd').textContent='➕ 延伸🔵反向起點';
         selectRoad(s1);t('✅ 已切分為兩段');
         return;
     }
