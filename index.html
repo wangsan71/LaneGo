@@ -92,6 +92,12 @@
             transition: transform 0.15s ease;
         }
 
+        .lane-arrow svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
         .lane-label {
             font-size: 11px;
             color: #3c4043;
@@ -299,21 +305,25 @@
     <!-- Maplibre GL JS -->
     <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
 
+    <script src="traffic-icons.js"></script>
     <script>
         // ========== 內嵌車道圖示（解決 GitHub Pages 載入失敗問題）==========
-        const ICON_SVGS = {
-            straight: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/></svg>',
-            left: '<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="20,10 4,24 20,24" fill="#1a73e8"/></svg>',
-            right: '<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="28,10 44,24 28,24" fill="#1a73e8"/></svg>',
-            slight_left: '<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(-45,16,26)"/><polygon points="4,2 12,0 8,8" fill="#1a73e8" transform="rotate(-45,8,4)"/></svg>',
-            slight_right: '<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(45,16,26)"/><polygon points="44,2 36,0 40,8" fill="#1a73e8" transform="rotate(45,40,4)"/></svg>',
-            straight_left: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="8" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="6,4 2,14 12,10" fill="#1a73e8"/></svg>',
-            straight_right: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="32" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="42,4 46,14 36,10" fill="#1a73e8"/></svg>',
-            left_right: '<svg viewBox="0 0 48 48"><rect x="4" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="4,10 0,22 14,16" fill="#1a73e8"/><rect x="36" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="44,10 48,22 34,16" fill="#1a73e8"/><line x1="16" y1="22" x2="32" y2="22" stroke="#1a73e8" stroke-width="6" stroke-linecap="round"/></svg>',
-            u_turn: '<svg viewBox="0 0 48 48"><path d="M20,6 L20,28 A16,16 0 0,0 44,32" fill="none" stroke="#1a73e8" stroke-width="7" stroke-linecap="round"/><polygon points="44,18 36,26 40,36" fill="#1a73e8"/></svg>',
-            merge_left: '<svg viewBox="0 0 48 48"><rect x="24" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="12" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="12,2 24,12 18,20" fill="#1a73e8"/></svg>',
-            merge_right: '<svg viewBox="0 0 48 48"><rect x="16" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="28" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="36,2 24,12 30,20" fill="#1a73e8"/></svg>'
+        const LEGACY_ICON_SVGS = {
+            // --- 精緻箭頭版（stroke-based，viewBox 0 0 48 48）---
+            straight: '<svg viewBox="0 0 48 48"><path d="M24 35 V12" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M18 18 L24 12 L30 18" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            left: '<svg viewBox="0 0 48 48"><path d="M35 24 H12" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M18 18 L12 24 L18 30" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            right: '<svg viewBox="0 0 48 48"><path d="M12 24 H35" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M30 18 L36 24 L30 30" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            slight_left: '<svg viewBox="0 0 48 48"><path d="M34 38 L14 14" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M22 10 L14 14 L18 22" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            slight_right: '<svg viewBox="0 0 48 48"><path d="M14 38 L34 14" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M26 10 L34 14 L30 22" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            straight_left: '<svg viewBox="0 0 48 48"><path d="M27 35 V10" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M22 16 L27 10 L32 16" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M27 26 Q27 22 20 22 H12" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M16 16 L12 22 L16 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            straight_right: '<svg viewBox="0 0 48 48"><path d="M21 35 V10" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M16 16 L21 10 L26 16" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M21 26 Q21 22 28 22 H36" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M32 16 L36 22 L32 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            left_right: '<svg viewBox="0 0 48 48"><path d="M24 35 V26" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M24 26 Q24 22 18 22 H12" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M16 16 L12 22 L16 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 26 Q24 22 30 22 H36" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M32 16 L36 22 L32 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            straight_left_right: '<svg viewBox="0 0 48 48"><path d="M24 35 V10" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M19 16 L24 10 L29 16" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 26 Q24 22 18 22 H12" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M16 16 L12 22 L16 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M24 26 Q24 22 30 22 H36" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M32 16 L36 22 L32 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            u_turn: '<svg viewBox="0 0 48 48"><path d="M31 34 V22 A7 7 0 0 0 17 22 V34" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M12 28 L17 34 L22 28" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            merge_left: '<svg viewBox="0 0 48 48"><path d="M28 8 V20" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M18 24 V42" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M28 20 L18 24" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M14 18 L18 24 L22 20" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>',
+            merge_right: '<svg viewBox="0 0 48 48"><path d="M20 8 V20" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M30 24 V42" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M20 20 L30 24" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round"/><path d="M34 18 L30 24 L26 20" fill="none" stroke="#1a73e8" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/></svg>'
         };
+        const ICON_LIST = ['straight', 'left', 'right', 'slight_left', 'slight_right', 'straight_left', 'straight_right', 'left_right', 'u_turn', 'merge_left', 'merge_right'];
 
         // ========== 地圖初始化（澳門中心） ==========
         const macauCenter = [113.5439, 22.1987]; // Maplibre 用 [lng, lat]
@@ -587,19 +597,20 @@
         const OFFSET_EWMA_ALPHA = 0.3;       // 偏移校正 EWMA 係數（提高響應）
 
         function renderLanes(road, direction, currentLaneIndex = 0) {
-            const lanes = direction === 'forward' ? road.lanesForward : road.lanesBackward;
+            const lanes = direction === 'forward' ? (road.lanesForward || []) : (road.lanesBackward || []);
             const dirText = direction === 'forward' ? '順向' : '反向';
             const total = lanes.length;
 
             roadNameEl.innerHTML = `<strong>${road.name}</strong> · ${dirText} · ${total} 車道`;
-            lanesRowEl.innerHTML = '';
+            lanesRowEl.innerHTML = total ? '' : '<div class="no-road">此路段尚未設定車道</div>';
 
             for (let i = 0; i < total; i++) {
                 const lane = lanes[i];
                 const laneNum = i + 1;
                 const box = document.createElement('div');
                 box.className = 'lane-box';
-                const svg = ICON_SVGS[lane.icon] || ICON_SVGS['straight']; // fallback to straight
+                const icon = ICON_LIST.includes(lane.icon) ? lane.icon : 'straight';
+                const svg = TRAFFIC_ICON_SVGS[icon] || TRAFFIC_ICON_SVGS.straight;
                 box.innerHTML = `
                     <div class="lane-arrow">${svg}</div>
                     <div class="lane-label">${lane.label}</div>
