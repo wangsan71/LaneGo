@@ -1,0 +1,16 @@
+{
+  "id": "road_1",
+  "name": "高士德大馬路 Avenida de Horta e Costa",
+  "path": [
+    [22.19980, 113.54360],
+    [22.19975, 113.54410]
+  ],
+  "lanesForward": [
+    { "icon": "straight", "label": "直走" },
+    { "icon": "straight", "label": "直走" }
+  ],
+  "lanesBackward": [
+    { "icon": "straight_left",  "label": "直走 / 左轉" },
+    { "icon": "straight_right", "label": "直走 / 右轉" }
+  ]
+}

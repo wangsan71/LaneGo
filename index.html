@@ -43,8 +43,6 @@
             border-radius: 16px;
             box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
             padding: 12px 16px;
-            min-width: auto;
-            max-width: none;
             backdrop-filter: blur(6px);
             text-align: center;
         }
@@ -53,6 +51,9 @@
             font-size: 13px;
             color: #5f6368;
             margin-bottom: 6px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .road-name strong {
@@ -63,28 +64,31 @@
             display: flex;
             justify-content: center;
             gap: 8px;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+            padding-bottom: 4px;
         }
 
         .lane-box {
-            background: #f1f3f4;
+            background: rgba(26, 115, 232, 0.08);
             border-radius: 12px;
             padding: 8px 10px;
             min-width: 58px;
             text-align: center;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-            transition: all 0.25s ease;
+            box-shadow: 0 0 16px rgba(26, 115, 232, 0.18), inset 0 0 8px rgba(26, 115, 232, 0.06);
+            transition: all 0.3s ease;
         }
 
-        .lane-box.current {
-            background: #e8f0fe;
-            box-shadow: 0 4px 12px rgba(26, 115, 232, 0.35);
+        .lane-box:hover {
+            box-shadow: 0 0 22px rgba(26, 115, 232, 0.30), inset 0 0 12px rgba(26, 115, 232, 0.10);
         }
 
         .lane-arrow {
-            font-size: 30px;
-            line-height: 1;
-            color: #1a73e8;
+            width: 36px;
+            height: 36px;
+            display: block;
+            margin: 0 auto;
             transition: transform 0.15s ease;
         }
 
@@ -242,7 +246,8 @@
             }
 
             .lane-arrow {
-                font-size: 24px;
+                width: 28px;
+                height: 28px;
             }
 
             .lane-label {
@@ -523,20 +528,23 @@
         function renderLanes(road, direction, currentLaneIndex = 0) {
             const lanes = direction === 'forward' ? road.lanesForward : road.lanesBackward;
             const dirText = direction === 'forward' ? '順向' : '反向';
+            const total = lanes.length;
 
-            roadNameEl.innerHTML = `<strong>${road.name}</strong> · ${dirText} · ${lanes.length} 車道`;
+            roadNameEl.innerHTML = `<strong>${road.name}</strong> · ${dirText} · ${total} 車道`;
             lanesRowEl.innerHTML = '';
 
-            lanes.forEach((lane, index) => {
+            for (let i = 0; i < total; i++) {
+                const lane = lanes[i];
+                const laneNum = i + 1;
                 const box = document.createElement('div');
-                box.className = 'lane-box' + (index === currentLaneIndex ? ' current' : '');
+                box.className = 'lane-box';
                 box.innerHTML = `
-                    <div class="lane-arrow">${lane.icon}</div>
+                    <img class="lane-arrow" src="icons/${lane.icon}.svg" alt="${lane.label}" />
                     <div class="lane-label">${lane.label}</div>
-                    <div class="lane-number">第 ${index + 1} 車道</div>
+                    <div class="lane-number">第 ${laneNum} 車道</div>
                 `;
                 lanesRowEl.appendChild(box);
-            });
+            }
         }
 
         function renderNoRoad() {

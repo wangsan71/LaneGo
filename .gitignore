@@ -21,3 +21,7 @@ Thumbs.db
 # Environment
 .env
 .env.local
+
+# Build artifacts & temp files
+macau_roads_v1.json
+.omo/
