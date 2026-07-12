@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LaneGo Editor - 車道編輯器</title>
+    <link href="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.css" rel="stylesheet" />
+    <style>
+        *{margin:0;padding:0;box-sizing:border-box}
+        html,body{width:100%;height:100%;overflow:hidden;font-family:"Microsoft JhengHei","PingFang TC",Arial,sans-serif}
+        #map{position:absolute;top:0;left:0;width:100%;height:100%;z-index:1}
+        .toolbar{position:absolute;top:12px;left:12px;z-index:1000;display:flex;gap:8px;flex-wrap:wrap}
+        .toolbar select,.toolbar input,.toolbar button{
+            padding:8px 12px;border-radius:8px;border:1px solid #dadce0;
+            font-size:13px;background:white;box-shadow:0 1px 4px rgba(0,0,0,0.1)
+        }
+        .toolbar button{cursor:pointer;font-weight:bold;border:none}
+        .toolbar button:hover{opacity:0.85}
+        .btn-primary{background:#1a73e8;color:white}
+        .btn-danger{background:#ea4335;color:white}
+        .btn-warn{background:#fbbc04;color:#202124}
+        .btn-outline{background:white;color:#1a73e8;border:1px solid #dadce0}
+        .search-input{width:200px}
+
+        .panel{
+            position:absolute;top:60px;right:0;z-index:999;
+            width:380px;height:calc(100% - 60px);background:rgba(255,255,255,0.98);
+            box-shadow:-4px 0 24px rgba(0,0,0,0.15);overflow-y:auto;
+            padding:20px;font-size:13px;transition:right 0.3s
+        }
+        .panel.hidden{right:-400px}
+        .panel h3{margin:0 0 8px;font-size:16px;color:#202124}
+        .panel .meta{color:#5f6368;font-size:12px;margin-bottom:16px}
+        .panel .sec-title{font-weight:bold;color:#202124;margin:16px 0 8px;padding-bottom:4px;border-bottom:2px solid #1a73e8}
+        .lane-row{display:flex;align-items:center;gap:8px;padding:8px;margin:4px 0;background:#f8f9fa;border-radius:8px}
+        .lane-row .preview{width:36px;height:36px;flex-shrink:0}
+        .lane-row .info{flex:1}
+        .lane-row .info div{font-size:12px;color:#5f6368}
+        .lane-row select{padding:6px;border-radius:6px;border:1px solid #dadce0;font-size:13px}
+        .lane-row .rm-btn{padding:4px 8px;font-size:11px;cursor:pointer;border:1px solid #dadce0;border-radius:6px;background:white;color:#ea4335}
+        .btn-row{display:flex;gap:8px;margin-top:12px;flex-wrap:wrap}
+        .btn-row button{flex:1;min-width:80px;padding:10px 12px;border:none;border-radius:8px;font-size:13px;font-weight:bold;cursor:pointer}
+        .toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:#202124;color:white;padding:12px 24px;border-radius:8px;font-size:14px;z-index:9999;opacity:0;transition:opacity 0.3s;pointer-events:none}
+        .toast.show{opacity:1}
+        .split-dot{position:absolute;z-index:1001;pointer-events:none;width:24px;height:24px;margin-left:-12px;margin-top:-12px;border-radius:50%;background:#fbbc04;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3);display:none}
+        .info-bar{position:absolute;bottom:12px;left:12px;z-index:1000;background:rgba(255,255,255,0.9);padding:6px 12px;border-radius:8px;font-size:12px;color:#5f6368;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+        .drop-overlay{position:absolute;top:0;left:0;width:100%;height:100%;z-index:2000;background:rgba(26,115,232,0.15);border:4px dashed #1a73e8;display:none;align-items:center;justify-content:center;font-size:24px;font-weight:bold;color:#1a73e8;pointer-events:none}
+        .drop-overlay.show{display:flex}
+        .file-label{cursor:pointer;padding:8px 12px;border-radius:8px;font-size:13px;background:white;color:#1a73e8;border:2px dashed #1a73e8;font-weight:bold;box-shadow:0 1px 4px rgba(0,0,0,0.1)}
+        .file-label input{display:none}
+        @media(max-width:600px){.panel{width:100%;right:0}.panel.hidden{right:-100%}.search-input{width:120px}}
+    </style>
+</head>
+<body>
+<div id="map"></div>
+<div class="drop-overlay" id="dropOverlay">📂 拖放 roads.json 到這裡</div>
+
+<div class="toolbar">
+    <label class="file-label">📂 載入 roads.json<input type="file" id="fileRoads" accept=".json"></label>
+    <label class="file-label">📋 載入 overrides<input type="file" id="fileOverrides" accept=".json"></label>
+    <input class="search-input" id="searchInput" placeholder="搜尋道路名稱…">
+    <button id="btnSearch" class="btn-outline">搜尋</button>
+    <button id="btnExportAll" class="btn-primary">📥 匯出 overrides</button>
+    <button id="btnClearAll" class="btn-danger">🗑 清除</button>
+    <span style="padding:8px;font-size:12px;color:#5f6368" id="overrideCount">0 條暫存修正</span>
+</div>
+
+<div class="panel hidden" id="panel">
+    <h3 id="panelTitle">點擊道路開始編輯</h3>
+    <div class="meta" id="panelMeta"></div>
+    <div id="panelJunction"></div>
+    <div id="panelForward"></div>
+    <div id="panelBackward"></div>
+    <div class="btn-row">
+        <button id="btnAddFwd" class="btn-outline">+ 順向車道</button>
+        <button id="btnAddBwd" class="btn-outline">+ 反向車道</button>
+    </div>
+    <div class="btn-row">
+        <button id="btnAddPt" class="btn-outline" style="color:#ea4335">➕ 延伸🔴順向終點</button>
+        <button id="btnExtBwd" class="btn-outline" style="color:#1a73e8">➕ 延伸🔵反向起點</button>
+        <button id="btnRmPt" class="btn-outline">✕ 刪除端點</button>
+    </div>
+    <div class="btn-row">
+        <button id="btnSplit" class="btn-warn">🔪 在此切分路段</button>
+        <button id="btnMerge" class="btn-outline">🔗 合併路線</button>
+    </div>
+    <div class="btn-row">
+        <button id="btnSave" class="btn-primary">💾 儲存修正</button>
+        <button id="btnDismiss" class="btn-outline">✕ 取消選取</button>
+    </div>
+    <div class="toast" id="toast"></div>
+</div>
+
+<div class="split-dot" id="splitDot"></div>
+<div class="info-bar" id="infoBar">載入中…</div>
+
+<script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
+<script>
+// ══════ 內嵌圖示 ══════
+const ICON_SVGS={straight:'<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/></svg>',left:'<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="20,10 4,24 20,24" fill="#1a73e8"/></svg>',right:'<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="28,10 44,24 28,24" fill="#1a73e8"/></svg>',slight_left:'<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(-45,16,26)"/><polygon points="4,2 12,0 8,8" fill="#1a73e8" transform="rotate(-45,8,4)"/></svg>',slight_right:'<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(45,16,26)"/><polygon points="44,2 36,0 40,8" fill="#1a73e8" transform="rotate(45,40,4)"/></svg>',straight_left:'<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="8" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="6,4 2,14 12,10" fill="#1a73e8"/></svg>',straight_right:'<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="32" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="42,4 46,14 36,10" fill="#1a73e8"/></svg>',left_right:'<svg viewBox="0 0 48 48"><rect x="4" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="4,10 0,22 14,16" fill="#1a73e8"/><rect x="36" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="44,10 48,22 34,16" fill="#1a73e8"/><line x1="16" y1="22" x2="32" y2="22" stroke="#1a73e8" stroke-width="6" stroke-linecap="round"/></svg>',u_turn:'<svg viewBox="0 0 48 48"><path d="M20,6 L20,28 A16,16 0 0,0 44,32" fill="none" stroke="#1a73e8" stroke-width="7" stroke-linecap="round"/><polygon points="44,18 36,26 40,36" fill="#1a73e8"/></svg>',merge_left:'<svg viewBox="0 0 48 48"><rect x="24" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="12" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="12,2 24,12 18,20" fill="#1a73e8"/></svg>',merge_right:'<svg viewBox="0 0 48 48"><rect x="16" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="28" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="36,2 24,12 30,20" fill="#1a73e8"/></svg>'};
+const ICON_LIST=['straight','left','right','slight_left','slight_right','straight_left','straight_right','left_right','u_turn','merge_left','merge_right'];
+const ICON_LABEL={straight:'直走',left:'左轉',right:'右轉',slight_left:'左前方',slight_right:'右前方',straight_left:'直走/左轉',straight_right:'直走/右轉',left_right:'左轉/右轉',u_turn:'迴轉',merge_left:'靠左',merge_right:'靠右'};
+
+// ══════ 工具函式 ══════
+function toRad(d){return d*Math.PI/180}
+function toDeg(r){return r*180/Math.PI}
+function norm(d){return((d%360)+360)%360}
+function distance(lat1,lng1,lat2,lng2){const R=6371000,dLat=toRad(lat2-lat1),dLng=toRad(lng2-lng1);const a=Math.sin(dLat/2)**2+Math.cos(toRad(lat1))*Math.cos(toRad(lat2))*Math.sin(dLng/2)**2;return R*2*Math.atan2(Math.sqrt(a),Math.sqrt(1-a))}
+function ptSegDist(px,py,x1,y1,x2,y2){const A=px-x1,B=py-y1,C=x2-x1,D=y2-y1;const dot=A*C+B*D,lenSq=C*C+D*D;let p=lenSq!==0?dot/lenSq:-1;let xx,yy;if(p<0){xx=x1;yy=y1}else if(p>1){xx=x2;yy=y2}else{xx=x1+p*C;yy=y1+p*D}return distance(px,py,xx,yy)}
+function findNearestRoad(lat,lng){let best=null,min=Infinity;roadDB.forEach(r=>{for(let i=0;i<r.path.length-1;i++){const p1=r.path[i],p2=r.path[i+1];const d=ptSegDist(lat,lng,p1[0],p1[1],p2[0],p2[1]);if(d<min){min=d;best=r}}});return best?{road:best,distance:Math.round(min)}:null}
+
+// ══════ 狀態 ══════
+let roadDB=[],map,selected=null,splitMode=false,mergeMode=false,extendEnd=null,dragIdx=-1;
+let editFwd=[],editBwd=[];
+const STORAGE='lanego_overrides';
+let fileName='';
+
+// ══════ DOM refs ══════
+const $=id=>document.getElementById(id);
+const panel=$('panel'),panelTitle=$('panelTitle'),panelMeta=$('panelMeta');
+const panelFwd=$('panelForward'),panelBwd=$('panelBackward');
+const splitDot=$('splitDot'),toastEl=$('toast'),infoBar=$('infoBar');
+const overrideCount=$('overrideCount'),dropOverlay=$('dropOverlay');
+
+function t(msg,d=2000){toastEl.textContent=msg;toastEl.classList.add('show');clearTimeout(toastEl._t);toastEl._t=setTimeout(()=>toastEl.classList.remove('show'),d)}
+function getOverrides(){try{return JSON.parse(localStorage.getItem(STORAGE)||'[]')}catch{return[]}}
+function saveOverrides(a){localStorage.setItem(STORAGE,JSON.stringify(a));updateOverrideCount()}
+function updateOverrideCount(){const n=getOverrides().length;overrideCount.textContent=n+' 條暫存修正'}
+
+function applyOverrides(roads){getOverrides().forEach(ov=>{let best=null,bd=Infinity;roads.forEach(r=>{r.path.forEach(pt=>{const d=distance(ov.lat,ov.lng,pt[0],pt[1]);if(d<bd){bd=d;best=r}})});if(best&&bd<30){if(ov.lanesForward)best.lanesForward=ov.lanesForward;if(ov.lanesBackward)best.lanesBackward=ov.lanesBackward}});return roads}
+
+// ══════ 資料載入 ══════
+function loadRoadsJSON(jsonText){
+    try{const data=JSON.parse(jsonText);if(!Array.isArray(data))throw new Error('JSON 必須是陣列');roadDB=applyOverrides(data);updateInfo();renderRoads();t(`✅ 已載入 ${roadDB.length} 條路段 (${fileName})`)}catch(e){t('❌ 解析失敗: '+e.message)}
+}
+
+function loadOverridesJSON(jsonText){
+    try{const data=JSON.parse(jsonText);if(!Array.isArray(data))throw new Error('overrides 必須是陣列');const existing=getOverrides();const merged=[...existing];data.forEach(entry=>{const idx=merged.findIndex(o=>Math.abs(o.lat-entry.lat)<1e-4&&Math.abs(o.lng-entry.lng)<1e-4);if(idx>=0)merged[idx]=entry;else merged.push(entry)});saveOverrides(merged);roadDB=applyOverrides(roadDB);updateInfo();renderRoads();t(`✅ 已合併 ${data.length} 條 overrides，共 ${merged.length} 條`)}catch(e){t('❌ overrides 解析失敗: '+e.message)}
+}
+
+function handleFile(file,cb){
+    if(!file||!file.name.endsWith('.json')){t('請選擇 .json 檔案');return}
+    fileName=file.name;
+    const reader=new FileReader();
+    reader.onload=()=>cb(reader.result);
+    reader.onerror=()=>t('❌ 讀取失敗');
+    reader.readAsText(file);
+}
+
+$('fileRoads').onchange=function(){if(this.files[0])handleFile(this.files[0],loadRoadsJSON)};
+$('fileOverrides').onchange=function(){if(this.files[0])handleFile(this.files[0],loadOverridesJSON)};
+
+// 拖放
+document.addEventListener('dragover',e=>{e.preventDefault();dropOverlay.classList.add('show')});
+document.addEventListener('dragleave',e=>{if(e.target===document.documentElement)dropOverlay.classList.remove('show')});
+document.addEventListener('drop',e=>{
+    e.preventDefault();dropOverlay.classList.remove('show');
+    const f=e.dataTransfer.files[0];if(!f)return;
+    if(f.name.includes('override')||f.name.includes('lane_overrides'))handleFile(f,loadOverridesJSON);
+    else handleFile(f,loadRoadsJSON);
+});
+
+function renderRoads(){
+    const geojson={type:'FeatureCollection',features:roadDB.map(r=>({type:'Feature',properties:{id:r.id,name:r.name},geometry:{type:'LineString',coordinates:r.path.map(p=>[p[1],p[0]])}}))};
+    if(map.getSource('roads'))map.getSource('roads').setData(geojson);
+    else{map.addSource('roads',{type:'geojson',data:geojson});map.addLayer({id:'roads-layer',type:'line',source:'roads',paint:{'line-color':'#1a73e8','line-width':4,'line-opacity':0.5}})}
+}
+
+function highlight(road){
+    const coords=road.path.map(p=>[p[1],p[0]]);
+    const gj={type:'FeatureCollection',features:[{type:'Feature',properties:{},geometry:{type:'LineString',coordinates:coords}}]};
+    if(map.getSource('hl'))map.getSource('hl').setData(gj);
+    else{map.addSource('hl',{type:'geojson',data:gj});map.addLayer({id:'hl-layer',type:'line',source:'hl',paint:{'line-color':'#ea4335','line-width':8,'line-opacity':0.85}})}
+
+    // 所有路徑點（灰色，先加入底層，避免蓋住路口標記）
+    const allPts={type:'FeatureCollection',features:road.path.map((p,i)=>({type:'Feature',properties:{idx:i},geometry:{type:'Point',coordinates:[p[1],p[0]]}}))};
+    if(map.getSource('hl-allpts'))map.getSource('hl-allpts').setData(allPts);
+    else{map.addSource('hl-allpts',{type:'geojson',data:allPts});map.addLayer({id:'hl-allpts-layer',type:'circle',source:'hl-allpts',paint:{'circle-radius':5,'circle-color':'#80868b','circle-stroke-width':2,'circle-stroke-color':'white'}})}
+
+    // 路口端點（紅/藍，後加入上層以確保可見）
+    const start=road.path[0],end=road.path[road.path.length-1];
+    const pts={type:'FeatureCollection',features:[
+        {type:'Feature',properties:{c:'end'},geometry:{type:'Point',coordinates:[end[1],end[0]]}},
+        {type:'Feature',properties:{c:'start'},geometry:{type:'Point',coordinates:[start[1],start[0]]}}
+    ]};
+    if(map.getSource('hl-j'))map.getSource('hl-j').setData(pts);
+    else{map.addSource('hl-j',{type:'geojson',data:pts});
+        map.addLayer({id:'hl-j-end',type:'circle',source:'hl-j',filter:['==',['get','c'],'end'],paint:{'circle-radius':7,'circle-color':'#ea4335','circle-stroke-width':2,'circle-stroke-color':'white'}});
+        map.addLayer({id:'hl-j-start',type:'circle',source:'hl-j',filter:['==',['get','c'],'start'],paint:{'circle-radius':7,'circle-color':'#1a73e8','circle-stroke-width':2,'circle-stroke-color':'white'}});
+    }
+}
+
+function updateInfo(){infoBar.textContent=`${roadDB.length} 路段 | ${new Set(roadDB.map(r=>r.name)).size} 條路名`}
+
+// ══════ 面板 ══════
+function selectRoad(road){
+    selected=road;editFwd=road.lanesForward.map(l=>({...l}));editBwd=road.lanesBackward.map(l=>({...l}));
+    splitMode=false;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';
+    renderPanel();panel.classList.remove('hidden');highlight(road);
+    panelTitle.textContent='✏️ '+road.name;
+    panelMeta.innerHTML=`ID: ${road.id} | ${road.length}m | ${road.highway||'?'} | 座標點: ${road.path.length}`;
+}
+
+function dismiss(){panel.classList.add('hidden');selected=null;splitMode=false;mergeMode=false;extendEnd=null;dragIdx=-1;splitDot.style.display='none';$('btnMerge').textContent='🔗 合併路線';if(map.getSource('hl'))map.getSource('hl').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-j'))map.getSource('hl-j').setData({type:'FeatureCollection',features:[]});if(map.getSource('hl-allpts'))map.getSource('hl-allpts').setData({type:'FeatureCollection',features:[]})}
+
+function renderPanel(){
+    if(!selected)return;
+
+    // 路口轉向選項（自動配置車道）
+    const detectJunc=(lanes)=>{return{straight:lanes.some(l=>l.icon.includes('straight')||l.icon==='straight'),left:lanes.some(l=>l.icon.includes('left')||l.icon==='left'),right:lanes.some(l=>l.icon.includes('right')||l.icon==='right')}};
+    const jf=detectJunc(editFwd),jb=detectJunc(editBwd);
+    const jcb=(prefix,junc,lanes)=>{
+        let h=`<div class="sec-title">🚦 ${prefix}路口方向</div><div style="display:flex;gap:16px;margin:8px 0">`;
+        ['straight','left','right'].forEach(t=>{const labels={straight:'⬆ 直走',left:'⬅ 左轉',right:'➡ 右轉'};h+=`<label style="cursor:pointer;font-size:13px"><input type="checkbox" ${junc[t]?'checked':''} onchange="onJuncToggle('${prefix}',this)" data-turn="${t}" style="margin-right:4px">${labels[t]}</label>`});
+        h+=`</div>`;
+        return h;
+    };
+    const panelJunc=$('panelJunction');
+    panelJunc.innerHTML=jcb('順向',jf,editFwd)+jcb('反向',jb,editBwd);
+
+    const build=(lanes,prefix,color)=>{
+        let h=`<div class="sec-title" style="border-bottom-color:${color}">${prefix} (${lanes.length} 車道) 🟡 ${color==='#ea4335'?'🔴 順向終點路口':'🔵 反向起點路口'}</div>`;
+        lanes.forEach((l,i)=>{h+=`<div class="lane-row"><div class="preview">${ICON_SVGS[l.icon]||ICON_SVGS.straight}</div><div class="info"><div>車道 ${i+1}</div><select onchange="onLaneChange('${prefix}',${i},this.value)">${ICON_LIST.map(ic=>`<option value="${ic}" ${l.icon===ic?'selected':''}>${ICON_LABEL[ic]}</option>`).join('')}</select></div><button class="rm-btn" onclick="onRemoveLane('${prefix}',${i})">✕</button></div>`});
+        return h;
+    };
+    panelFwd.innerHTML=build(editFwd,'順向','#ea4335');
+    panelBwd.innerHTML=build(editBwd,'反向','#1a73e8');
+}
+
+window.onLaneChange=function(prefix,idx,icon){const lanes=prefix==='順向'?editFwd:editBwd;if(idx<lanes.length){lanes[idx]={icon,label:ICON_LABEL[icon]};renderPanel()}};
+window.onRemoveLane=function(prefix,idx){const lanes=prefix==='順向'?editFwd:editBwd;if(lanes.length<=1){t('至少保留 1 個車道');return}lanes.splice(idx,1);renderPanel()};
+
+window.onJuncToggle=function(prefix,el){
+    const turn=el.dataset.turn;
+    const lanes=prefix==='順向'?editFwd:editBwd;
+    if(!lanes.length)return;
+    const chk=el.checked;
+    // 收集所有勾選的轉向
+    const checks=el.parentElement.parentElement.querySelectorAll('input:checked');
+    const turns=Array.from(checks).map(c=>c.dataset.turn);
+    if(!turns.length){el.checked=true;return} // 至少一個
+
+    const iconMap={straight_left:['straight','left'],straight_right:['straight','right'],left_right:['left','right']};
+    const allThree=turns.includes('straight')&&turns.includes('left')&&turns.includes('right');
+
+    if(turns.length===1){
+        const single={straight:'straight',left:'left',right:'right'};
+        lanes.forEach(l=>{l.icon=single[turns[0]];l.label=ICON_LABEL[single[turns[0]]]});
+    }else if(turns.length===2){
+        const pair=Object.entries(iconMap).find(([k,v])=>v.every(t=>turns.includes(t)));
+        if(pair)lanes.forEach(l=>{l.icon=pair[0];l.label=ICON_LABEL[pair[0]]});
+        else{lanes[0]={icon:'straight_left',label:ICON_LABEL.straight_left};for(let i=1;i<lanes.length;i++)lanes[i]={icon:'straight',label:ICON_LABEL.straight}}
+    }else if(allThree&&lanes.length>=2){
+        lanes[0]={icon:'straight_left',label:ICON_LABEL.straight_left};
+        lanes[lanes.length-1]={icon:'straight_right',label:ICON_LABEL.straight_right};
+        for(let i=1;i<lanes.length-1;i++)lanes[i]={icon:'straight',label:ICON_LABEL.straight};
+    }
+    renderPanel();
+};
+
+$('btnAddFwd').onclick=()=>{editFwd.push({icon:'straight',label:'直走'});renderPanel()};
+$('btnAddBwd').onclick=()=>{editBwd.push({icon:'straight',label:'直走'});renderPanel()};
+$('btnDismiss').onclick=dismiss;
+
+// ══════ 路徑點編輯（從路口端點延伸）══════
+function startExtend(end){
+    if(extendEnd===end){extendEnd=null;$('btnAddPt').textContent='➕ 延伸🔴順向終點';$('btnExtBwd').textContent='➕ 延伸🔵反向起點';t('已退出延伸模式');return}
+    extendEnd=end;splitMode=false;
+    const label=end==='fwd'?'🔴順向終點':'🔵反向起點';
+    $('btnAddPt').textContent=end==='fwd'?'✕ 取消延伸':'➕ 延伸🔴順向終點';
+    $('btnExtBwd').textContent=end==='bwd'?'✕ 取消延伸':'➕ 延伸🔵反向起點';
+    t(`點擊地圖從${label}延伸路徑`);
+}
+
+$('btnAddPt').onclick=()=>{if(!selected)return;startExtend('fwd')};
+$('btnExtBwd').onclick=()=>{if(!selected)return;startExtend('bwd')};
+$('btnRmPt').onclick=()=>{
+    if(!selected||selected.path.length<=2){t('至少保留 2 個路徑點');return}
+    if(extendEnd==='fwd')selected.path.pop();
+    else if(extendEnd==='bwd')selected.path.shift();
+    else selected.path.pop(); // 預設刪末端
+    renderRoads();highlight(selected);updateInfo();
+    t(`已刪除端點，剩 ${selected.path.length} 個點`);
+};
+
+// ══════ 儲存 ══════
+$('btnSave').onclick=()=>{
+    if(!selected)return;
+    const mid=Math.floor(selected.path.length/2);
+    const c=selected.path[mid]||selected.path[0];
+    const ov=getOverrides();
+    const entry={comment:`✏️ ${selected.name} (${selected.id})`,lat:parseFloat(c[0].toFixed(6)),lng:parseFloat(c[1].toFixed(6)),lanesForward:editFwd,lanesBackward:editBwd};
+    const idx=ov.findIndex(o=>Math.abs(o.lat-entry.lat)<1e-4&&Math.abs(o.lng-entry.lng)<1e-4);
+    if(idx>=0)ov[idx]=entry;else ov.push(entry);
+    saveOverrides(ov);
+    selected.lanesForward=editFwd;selected.lanesBackward=editBwd;
+    t('💾 已暫存。請按「📥 匯出 overrides」→ 放到 data/macau/ → npm run build');
+    renderPanel();
+};
+
+$('btnExportAll').onclick=()=>{
+    const ov=getOverrides();if(!ov.length){t('尚無修正資料');return}
+    const b=new Blob([JSON.stringify(ov,null,2)],{type:'application/json'});
+    const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download='lane_overrides.json';a.click();
+    t(`已匯出 ${ov.length} 條修正`);
+};
+
+$('btnClearAll').onclick=()=>{if(!confirm('確定清除所有暫存修正？'))return;localStorage.removeItem(STORAGE);updateOverrideCount();t('已清除');roadDB=applyOverrides(roadDB);renderRoads()};
+
+// ══════ 切分 ══════
+$('btnSplit').onclick=function(){
+    if(splitMode){splitMode=false;splitDot.style.display='none';this.textContent='🔪 在此切分路段';t('已取消切分');return}
+    splitMode=true;this.textContent='✕ 取消（點擊地圖設定切分點）';t('請點擊地圖上要切分的位置');
+};
+
+// ══════ 合併路線 ══════
+$('btnMerge').onclick=function(){
+    if(mergeMode){mergeMode=false;this.textContent='🔗 合併路線';t('已取消合併模式');return}
+    if(!selected){t('請先選取一條路線');return}
+    mergeMode=true;splitMode=false;extendEnd=null;splitDot.style.display='none';
+    this.textContent='✕ 取消（點擊地圖上的另一條路線合併）';
+    t('請點擊地圖上要合併的另一條路線');
+};
+
+function mergeRoads(a,b){
+    const MAX_MERGE_DIST=50;
+    const aS=a.path[0],aE=a.path[a.path.length-1];
+    const bS=b.path[0],bE=b.path[b.path.length-1];
+
+    const pairs=[
+        {d:distance(aE[0],aE[1],bS[0],bS[1]),type:'ae-bs',desc:'A終點→B起點'},
+        {d:distance(aE[0],aE[1],bE[0],bE[1]),type:'ae-be',desc:'A終點→B終點(反轉B)'},
+        {d:distance(aS[0],aS[1],bS[0],bS[1]),type:'as-bs',desc:'A起點(反轉A)→B起點'},
+        {d:distance(aS[0],aS[1],bE[0],bE[1]),type:'as-be',desc:'A起點(反轉A)→B終點(反轉B)'},
+    ];
+    pairs.sort((x,y)=>x.d-y.d);
+    const best=pairs[0];
+
+    if(best.d>MAX_MERGE_DIST){t(`端點距離 ${Math.round(best.d)}m 太遠 (>${MAX_MERGE_DIST}m)`);return;}
+
+    let newPath;
+    switch(best.type){
+        case'ae-bs':newPath=[...a.path,...b.path];break;
+        case'ae-be':newPath=[...a.path,...b.path.slice().reverse()];break;
+        case'as-bs':newPath=[...a.path.slice().reverse(),...b.path];break;
+        case'as-be':newPath=[...a.path.slice().reverse(),...b.path.slice().reverse()];break;
+    }
+
+    const bi=roadDB.indexOf(b);
+    if(bi>=0)roadDB.splice(bi,1);
+    a.path=newPath;
+    a.length=Math.round((a.length+b.length)*100)/100;
+
+    renderRoads();updateInfo();selectRoad(a);
+    t(`✅ 已合併 "${a.name}" + "${b.name}" (${best.desc}, ${Math.round(best.d)}m)`);
+}
+
+// ══════ 搜尋 ══════
+$('btnSearch').onclick=()=>{const kw=$('searchInput').value.trim().toLowerCase();if(!kw)return;const results=roadDB.filter(r=>r.name.toLowerCase().includes(kw));if(!results.length){t(`找不到 "${kw}"`);return}selectRoad(results[0]);t(`找到 ${results.length} 條，已選取第一條`)};
+
+// ══════ 地圖點擊 ══════
+map=new maplibregl.Map({container:'map',style:'https://tiles.openfreemap.org/styles/bright',center:[113.5439,22.1987],zoom:13,attributionControl:false});
+map.addControl(new maplibregl.AttributionControl({compact:true}),'bottom-left');
+map.addControl(new maplibregl.NavigationControl(),'bottom-right');
+map.getCanvas().style.cursor='crosshair';
+
+// ══════ 路徑點拖動 ══════
+function ptNear(e,pt){const px=map.project([pt[1],pt[0]]);const dx=px.x-e.point.x,dy=px.y-e.point.y;return Math.sqrt(dx*dx+dy*dy)<14}
+
+map.on('mousedown',e=>{
+    if(!selected||splitMode||mergeMode||extendEnd||e.originalEvent.button!==0)return;
+    for(let i=0;i<selected.path.length;i++){
+        if(ptNear(e,selected.path[i])){dragIdx=i;e.preventDefault();map.getCanvas().style.cursor='grabbing';return}
+    }
+});
+
+map.on('mousemove',e=>{
+    if(dragIdx>=0&&selected){
+        selected.path[dragIdx]=[e.lngLat.lat,e.lngLat.lng];
+        highlight(selected);renderRoads();
+        return;
+    }
+    if(splitMode&&selected){const px=map.project(e.lngLat);splitDot.style.display='block';splitDot.style.left=px.x+'px';splitDot.style.top=px.y+'px'}
+});
+
+map.on('mouseup',()=>{if(dragIdx>=0){dragIdx=-1;map.getCanvas().style.cursor='crosshair';updateInfo();panelMeta.innerHTML=`ID: ${selected.id} | 座標點: ${selected.path.length}`}});
+
+map.on('click',e=>{
+    if(dragIdx>=0)return; // skip click after drag
+    const lat=e.lngLat.lat,lng=e.lngLat.lng;
+
+    if(extendEnd&&selected){
+        if(extendEnd==='fwd')selected.path.push([lat,lng]);
+        else selected.path.unshift([lat,lng]);
+        renderRoads();highlight(selected);updateInfo();
+        panelMeta.innerHTML=`ID: ${selected.id} | ${selected.length}m | ${selected.highway||'?'} | 座標點: ${selected.path.length}`;
+        t(`✅ 已延伸，共 ${selected.path.length} 個點（再點地圖繼續延伸）`);
+        return;
+    }
+
+    if(splitMode&&selected){
+        const pts=selected.path.map((p,i)=>({i,d:distance(lat,lng,p[0],p[1])}));
+        const best=pts.reduce((a,b)=>a.d<b.d?a:b);
+        if(best.i<1||best.i>=selected.path.length-1){t('切分點太靠近端點');return}
+        const s1={...selected,path:selected.path.slice(0,best.i+1),lanesForward:editFwd,lanesBackward:editBwd};
+        const s2={...selected,path:selected.path.slice(best.i),lanesForward:editFwd.map(l=>({...l})),lanesBackward:editBwd.map(l=>({...l}))};
+        const oi=roadDB.indexOf(selected);if(oi>=0)roadDB.splice(oi,1,s1,s2);
+        renderRoads();updateInfo();
+    splitMode=false;extendEnd=null;splitDot.style.display='none';$('btnSplit').textContent='🔪 在此切分路段';$('btnAddPt').textContent='➕ 延伸🔴順向終點';$('btnExtBwd').textContent='➕ 延伸🔵反向起點';
+        selectRoad(s1);t('✅ 已切分為兩段');
+        return;
+    }
+
+    if(mergeMode&&selected){
+        const nr=findNearestRoad(lat,lng);
+        if(!nr||nr.distance>30){t('30m 內無道路');return;}
+        if(nr.road===selected){t('不能與自己合併');return;}
+        mergeRoads(selected,nr.road);
+        mergeMode=false;$('btnMerge').textContent='🔗 合併路線';
+        return;
+    }
+
+    const nr=findNearestRoad(lat,lng);
+    if(nr&&nr.distance<200)selectRoad(nr.road);
+    else t('200m 內無道路');
+});
+
+map.on('mousemove',e=>{
+    if(splitMode&&selected){const px=map.project(e.lngLat);splitDot.style.display='block';splitDot.style.left=px.x+'px';splitDot.style.top=px.y+'px'}
+});
+
+map.on('load',()=>{t('📂 拖放 roads.json 到此頁面，或點擊上方按鈕載入');updateOverrideCount()});
+</script>
+</body>
+</html>

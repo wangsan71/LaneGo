@@ -5,6 +5,8 @@
   "main": "server.js",
   "scripts": {
     "build": "node build_roads.js",
+    "build:macau": "node build_roads.js macau",
+    "pipeline": "node osm_pipeline.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
   },
@@ -14,7 +16,6 @@
   "type": "commonjs",
   "dependencies": {
     "node-forge": "^1.4.0",
-    "osm-pbf-parser": "^2.3.0",
-    "selfsigned": "^5.5.0"
+    "osm-pbf-parser": "^2.3.0"
   }
 }

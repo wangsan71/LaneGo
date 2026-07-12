@@ -1,8 +1,19 @@
 const fs = require('fs');
 const path = require('path');
 
-const inputFile = path.join(__dirname, 'macau_osm_fr.json');
-const outputFile = path.join(__dirname, 'macau_roads.json');
+// ── 命令列參數 ──
+const city = process.argv[2] || 'macau';
+const inputFile = path.join(__dirname, 'data', city, 'osm_fr.json');
+const outputFile = path.join(__dirname, 'data', city, 'roads.json');
+
+if (!fs.existsSync(inputFile)) {
+    console.error(`找不到輸入檔案: ${inputFile}`);
+    console.error('請先執行: node pbf_to_json.js <xxx.pbf> data/' + city + '/osm_fr.json');
+    process.exit(1);
+}
+
+console.log(`\n城市: ${city}`);
+console.log(`輸入: ${inputFile}`);
 
 const data = JSON.parse(fs.readFileSync(inputFile, 'utf8'));
 
@@ -28,9 +39,9 @@ const includeHighways = new Set([
 
 // ── 各道路類型預設車道數 ──
 const defaultLanesByType = {
-    'motorway': 3, 'motorway_link': 1,
-    'trunk': 3, 'trunk_link': 1,
-    'primary': 2, 'primary_link': 1,
+    'motorway': 4, 'motorway_link': 2,
+    'trunk': 4, 'trunk_link': 2,
+    'primary': 3, 'primary_link': 1,
     'secondary': 2, 'secondary_link': 1,
     'tertiary': 2, 'tertiary_link': 1,
     'residential': 1, 'unclassified': 1,
@@ -231,9 +242,9 @@ function inferLaneDirections(segments) {
  * @returns {{ lanes: Array, modified: boolean }}
  */
 function inferForEndpoint(seg, allSegments, path, direction) {
-    const INTERSECTION_RADIUS = 15;  // 交叉路口搜尋半徑（米）
-    const ANGLE_LEFT = -15;           // 左轉角度閾值
-    const ANGLE_RIGHT = 15;           // 右轉角度閾值
+    const INTERSECTION_RADIUS = 25;  // 交叉路口搜尋半徑（米）- 從 15m 提高以涵蓋 OSM 節點間距
+    const ANGLE_LEFT = -25;           // 左轉角度閾值（從 -15° 放寬）
+    const ANGLE_RIGHT = 25;           // 右轉角度閾值（從 15° 放寬）
 
     const endpoint = path[path.length - 1];
 
@@ -306,11 +317,15 @@ function inferForEndpoint(seg, allSegments, path, direction) {
 
     // 最左車道 → 檢查是否有左轉出口
     if (hasLeftExit && newLanes.length >= 1) {
-        if (hasStraight) {
+        if (hasStraight || newLanes.length >= 3) {
             newLanes[0] = { icon: 'straight_left', label: '直走 / 左轉' };
         } else {
-            // 僅有左轉出口（可能是 T 字路口或道路終點）
+            // 僅有左轉出口（T 字路口或道路終點）
             newLanes[0] = { icon: 'left', label: '左轉' };
+        }
+        // 多車道（4+）：第二車道也可能是直走+左轉
+        if (newLanes.length >= 4) {
+            newLanes[1] = { icon: 'straight_left', label: '直走 / 左轉' };
         }
         modified = true;
     }
@@ -318,10 +333,14 @@ function inferForEndpoint(seg, allSegments, path, direction) {
     // 最右車道 → 檢查是否有右轉出口
     const rightIdx = newLanes.length - 1;
     if (hasRightExit && rightIdx >= 0) {
-        if (hasStraight) {
+        if (hasStraight || newLanes.length >= 3) {
             newLanes[rightIdx] = { icon: 'straight_right', label: '直走 / 右轉' };
         } else {
             newLanes[rightIdx] = { icon: 'right', label: '右轉' };
+        }
+        // 多車道（4+）：倒數第二車道也可能是直走+右轉
+        if (newLanes.length >= 4 && rightIdx >= 3) {
+            newLanes[rightIdx - 1] = { icon: 'straight_right', label: '直走 / 右轉' };
         }
         modified = true;
     }
@@ -398,6 +417,9 @@ ways.forEach(way => {
     fwdCount = Math.max(0, fwdCount);
     bwdCount = Math.max(0, bwdCount);
 
+    const origFwdCount = fwdCount;
+    const origBwdCount = bwdCount;
+
     // ── 先嘗試從 OSM turn:lanes 獲取精確車道方向 ──
     const forwardLanesTag = tags['turn:lanes:forward'];
     const backwardLanesTag = tags['turn:lanes:backward'];
@@ -409,12 +431,27 @@ ways.forEach(way => {
     if (bothLanesTag && !forwardLanesTag && !backwardLanesTag) {
         hasOsmTurnData = true;
         const parsed = parseTurnLanes(bothLanesTag);
+        // 處理車道數不匹配：turn:lanes 數量與 fwd+bwd 不一致時，以 parsed 為準重新分配
+        const parsedCount = parsed.length;
+        const expectedCount = fwdCount + bwdCount;
+        if (parsedCount !== expectedCount) {
+            // 根據 turn:lanes 的實際數量重新分配前後向車道數
+            // 假設前後向車道數與 osm lanes 標籤比例一致
+            const ratio = expectedCount > 0 ? fwdCount / expectedCount : 0.5;
+            fwdCount = Math.max(0, Math.round(parsedCount * ratio));
+            bwdCount = parsedCount - fwdCount;
+        }
         lanesForward = parsed.slice(0, fwdCount);
         lanesBackward = parsed.slice(-bwdCount);
     } else if (forwardLanesTag || backwardLanesTag) {
         hasOsmTurnData = true;
-        lanesForward = forwardLanesTag ? parseTurnLanes(forwardLanesTag) : generateDefaultLanes(fwdCount);
-        lanesBackward = backwardLanesTag ? parseTurnLanes(backwardLanesTag) : generateDefaultLanes(bwdCount);
+        const parsedFwd = forwardLanesTag ? parseTurnLanes(forwardLanesTag) : null;
+        const parsedBwd = backwardLanesTag ? parseTurnLanes(backwardLanesTag) : null;
+        // 如果有方向專用 turn:lanes，以 parse 結果為準調整車道數
+        if (parsedFwd && parsedFwd.length !== fwdCount) fwdCount = parsedFwd.length;
+        if (parsedBwd && parsedBwd.length !== bwdCount) bwdCount = parsedBwd.length;
+        lanesForward = parsedFwd || generateDefaultLanes(fwdCount);
+        lanesBackward = parsedBwd || generateDefaultLanes(bwdCount);
     } else {
         // 無 OSM 轉彎資料 → 使用預設直行車道（後續將由交叉路口推斷更新）
         lanesForward = generateDefaultLanes(fwdCount);
@@ -434,8 +471,23 @@ ways.forEach(way => {
         destinations.push(...tags['destination:lanes:forward'].split('|').map(d => d.trim()).filter(d => d));
     }
 
-    // ── 切分路段 ──
+    // ── 切分路段：根據方向變化 + 最大長度 + turn:lanes 僅套用終端路段 ──
+    const MAX_SEGMENT_LENGTH = 80;
+    const MIN_SEGMENT_LENGTH = 10;
+    const BEARING_CHANGE_THRESHOLD = 35;
+    const TERMINAL_DISTANCE = 80;
+
+    // 預先計算每個路徑點的累積距離（用於判斷路段是否靠近 way 起/終點）
+    const cumulativeDist = [0];
+    for (let i = 1; i < rawPath.length; i++) {
+        cumulativeDist.push(cumulativeDist[i - 1] +
+            haversine(rawPath[i - 1][0], rawPath[i - 1][1], rawPath[i][0], rawPath[i][1]));
+    }
+    const wayTotalLength = cumulativeDist[cumulativeDist.length - 1];
+    const useTerminalSplit = hasOsmTurnData && wayTotalLength > TERMINAL_DISTANCE * 2;
+
     const segments = [];
+    let segStartIdx = 0;
     let currentSeg = {
         path: [rawPath[0]],
         lanesForward: lanesForward,
@@ -443,6 +495,11 @@ ways.forEach(way => {
         hasOsmTurnData: hasOsmTurnData,
         len: 0
     };
+
+    const bearings = [];
+    for (let i = 1; i < rawPath.length; i++) {
+        bearings.push(bearing(rawPath[i-1][0], rawPath[i-1][1], rawPath[i][0], rawPath[i][1]));
+    }
 
     for (let i = 1; i < rawPath.length; i++) {
         const point = rawPath[i];
@@ -452,10 +509,33 @@ ways.forEach(way => {
         currentSeg.path.push(point);
         currentSeg.len += dist;
 
-        const shouldSplit = (i === rawPath.length - 1) || currentSeg.len >= 50;
+        let bearingChange = false;
+        if (i >= 2 && currentSeg.len >= MIN_SEGMENT_LENGTH) {
+            const prevBearing = bearings[i - 2];
+            const currBearing = bearings[i - 1];
+            let diff = Math.abs(angleDiff(prevBearing, currBearing));
+            if (diff > BEARING_CHANGE_THRESHOLD) bearingChange = true;
+        }
+
+        const isEnd = i === rawPath.length - 1;
+        const tooLong = currentSeg.len >= MAX_SEGMENT_LENGTH;
+        const shouldSplit = isEnd || tooLong || bearingChange;
 
         if (shouldSplit) {
+            const segEndDist = cumulativeDist[i];
+            const segStartDist = cumulativeDist[segStartIdx];
+
+            if (useTerminalSplit) {
+                const nearEnd = (wayTotalLength - segEndDist) < TERMINAL_DISTANCE;
+                const nearStart = segStartDist < TERMINAL_DISTANCE;
+
+                currentSeg.lanesForward = nearEnd ? lanesForward : generateDefaultLanes(origFwdCount);
+                currentSeg.lanesBackward = nearStart ? lanesBackward : generateDefaultLanes(origBwdCount);
+                currentSeg.hasOsmTurnData = nearEnd || nearStart;
+            }
+
             segments.push(currentSeg);
+            segStartIdx = i;
             currentSeg = {
                 path: [point],
                 lanesForward: lanesForward,
@@ -466,9 +546,9 @@ ways.forEach(way => {
         }
     }
 
-    // 輸出路段
+    // 輸出路段（過濾太短的路段）
     segments.forEach(seg => {
-        if (seg.len < 3 && segments.length > 1) return;
+        if (seg.len < MIN_SEGMENT_LENGTH && segments.length > 1) return;
 
         const roadData = {
             id: `road_${idCounter++}`,
@@ -528,6 +608,7 @@ function mergeSegments(roads) {
         const curr = roads[i];
 
         const canMerge =
+            !prev._manualOverride && !curr._manualOverride &&
             prev.name === curr.name &&
             prev.highway === curr.highway &&
             prev.oneway === curr.oneway &&
@@ -550,13 +631,23 @@ function mergeSegments(roads) {
     return merged;
 }
 
+// ====================================================================
+//  步驟 2.5：先應用手動修正（在合併前標記，避免合併手動切分的路段）
+// ====================================================================
+
+const overridesFile = path.join(__dirname, 'data', city, 'lane_overrides.json');
+const overrides = loadOverrides();
+applyOverrides(allSegments, overrides);
+
+// ====================================================================
+//  步驟 3：合併相鄰相同配置的路段（跳過有手動修正的路段）
+// ====================================================================
+
 let finalDatabase = mergeSegments(allSegments);
 
 // ====================================================================
-//  步驟 3：應用手動修正（lane_overrides.json）
+//  （函數定義保留於下方）
 // ====================================================================
-
-const overridesFile = path.join(__dirname, 'lane_overrides.json');
 
 function loadOverrides() {
     if (!fs.existsSync(overridesFile)) {
@@ -592,7 +683,8 @@ function applyOverrides(roads, overrides) {
             });
         });
 
-        if (bestRoad && bestDist < 30) {  // 30 米內匹配
+        if (bestRoad && bestDist < 100) {  // 100 米內匹配（放寬以容納 OSM 節點間距）
+            bestRoad._manualOverride = true;
             if (override.lanesForward) {
                 bestRoad.lanesForward = override.lanesForward;
             }
@@ -612,25 +704,27 @@ function applyOverrides(roads, overrides) {
     return roads;
 }
 
-const overrides = loadOverrides();
-finalDatabase = applyOverrides(finalDatabase, overrides);
+// overrides 已在上方合併前套用
 
-// 清理內部標記
-finalDatabase.forEach(r => delete r._hasOsmTurnData);
-
-// 重新分配 ID
-finalDatabase.forEach((r, idx) => {
-    r.id = `road_${idx + 1}`;
-});
-
-// ── 統計 ──
+// ── 統計（在清理內部標記前計算）──
 const totalSegments = finalDatabase.length;
-const withOsmTurn = roadDatabase.filter(r => r._hasOsmTurnData).length;
+const withOsmTurn = allSegments.filter(r => r._hasOsmTurnData).length;
 let inferredLaneSegments = 0;
 finalDatabase.forEach(r => {
     const hasInferred = r.lanesForward.some(l => l.icon !== 'straight') ||
                         r.lanesBackward.some(l => l.icon !== 'straight');
     if (hasInferred) inferredLaneSegments++;
+});
+
+// 清理內部標記
+finalDatabase.forEach(r => {
+    delete r._hasOsmTurnData;
+    delete r._manualOverride;
+});
+
+// 重新分配 ID
+finalDatabase.forEach((r, idx) => {
+    r.id = `road_${idx + 1}`;
 });
 
 fs.writeFileSync(outputFile, JSON.stringify(finalDatabase, null, 2), 'utf8');

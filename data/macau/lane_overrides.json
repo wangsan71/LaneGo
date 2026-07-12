@@ -1,0 +1,1585 @@
+[
+  {
+    "comment": "✏️ 祐漢新村第一街 Rua Um do Bairro Iao Hon (road_994)",
+    "lat": 22.210577,
+    "lng": 113.549396,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬場海邊馬路 Estrada Marginal do Hipódromo (road_1103)",
+    "lat": 22.210118,
+    "lng": 113.549318,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "slight_right",
+        "label": "右前方"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 黑沙環馬路 Estrada da Areia Preta (road_1486)",
+    "lat": 22.209184,
+    "lng": 113.549354,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 慕拉士大馬路 Avenida de Venceslau de Morais (road_352)",
+    "lat": 22.208635,
+    "lng": 113.550032,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 俾利喇街 Rua de Francisco Xavier Pereira (road_211)",
+    "lat": 22.20778,
+    "lng": 113.551138,
+    "lanesForward": [
+      {
+        "icon": "right",
+        "label": "右轉"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 俾利喇街 Rua de Francisco Xavier Pereira (road_2464)",
+    "lat": 22.206861,
+    "lng": 113.55041,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走 / 左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 俾利喇街 Rua de Francisco Xavier Pereira (road_334)",
+    "lat": 22.206685,
+    "lng": 113.550322,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走 / 左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬交石斜坡(黑沙環斜路) Rampa dos Cavaleiros (road_2421)",
+    "lat": 22.206579,
+    "lng": 113.550426,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 馬交石斜坡(黑沙環斜路) Rampa dos Cavaleiros (road_1419)",
+    "lat": 22.206098,
+    "lng": 113.55105,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 馬交石斜坡(黑沙環斜路) Rampa dos Cavaleiros (road_1418)",
+    "lat": 22.20574,
+    "lng": 113.551335,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 馬交石斜坡(黑沙環斜路) Rampa dos Cavaleiros (road_2420)",
+    "lat": 22.204728,
+    "lng": 113.551805,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 亞馬喇馬路 Estrada de Ferreira do Amaral (road_153)",
+    "lat": 22.203911,
+    "lng": 113.552288,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 亞馬喇馬路 Estrada de Ferreira do Amaral (road_152)",
+    "lat": 22.204182,
+    "lng": 113.551953,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 亞馬喇馬路 Estrada de Ferreira do Amaral (road_1930)",
+    "lat": 22.203737,
+    "lng": 113.552649,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 亞馬喇馬路 Estrada de Ferreira do Amaral (road_1281)",
+    "lat": 22.203614,
+    "lng": 113.552986,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 亞馬喇馬路 Estrada de Ferreira do Amaral (road_1282)",
+    "lat": 22.202848,
+    "lng": 113.553086,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_2710)",
+    "lat": 22.201872,
+    "lng": 113.553073,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_2527)",
+    "lat": 22.201877,
+    "lng": 113.553436,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_1695)",
+    "lat": 22.201844,
+    "lng": 113.553663,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_1213)",
+    "lat": 22.201636,
+    "lng": 113.55417,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_1759)",
+    "lat": 22.198987,
+    "lng": 113.554717,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 水塘馬路 Estrada do Reservatório (road_1059)",
+    "lat": 22.199656,
+    "lng": 113.554689,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 羅理基博士大馬路 Avenida do Dr. Rodrigo Rodrigues (road_377)",
+    "lat": 22.196894,
+    "lng": 113.553428,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬六甲街 Rua de Malaca (road_2010)",
+    "lat": 22.195477,
+    "lng": 113.554826,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走 / 左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "範例：林茂海邊大馬路 AB 交界處 - 左車道直走+左轉，右車道直走+右轉",
+    "lat": 22.205,
+    "lng": 113.5415,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走 / 左轉"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走 / 右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.212596,
+    "lng": 113.549702,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1915)",
+    "lat": 22.212239,
+    "lng": 113.552395,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬場東大馬路 Avenida Leste do Hipódromo (road_587)",
+    "lat": 22.211073,
+    "lng": 113.553665,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.212164,
+    "lng": 113.552953,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.212328,
+    "lng": 113.551727,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.212418,
+    "lng": 113.551075,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.212507,
+    "lng": 113.550374,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1915)",
+    "lat": 22.21127,
+    "lng": 113.553325,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_191)",
+    "lat": 22.210917,
+    "lng": 113.553702,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_2031)",
+    "lat": 22.210195,
+    "lng": 113.554575,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1983)",
+    "lat": 22.209257,
+    "lng": 113.555708,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1984)",
+    "lat": 22.208422,
+    "lng": 113.556717,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_2108)",
+    "lat": 22.208337,
+    "lng": 113.55682,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走 / 右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1965)",
+    "lat": 22.207823,
+    "lng": 113.557442,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_2804)",
+    "lat": 22.207047,
+    "lng": 113.55838,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1981)",
+    "lat": 22.206739,
+    "lng": 113.558752,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_166)",
+    "lat": 22.204344,
+    "lng": 113.560792,
+    "lanesForward": [
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      },
+      {
+        "icon": "slight_right",
+        "label": "右前方"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1474)",
+    "lat": 22.199866,
+    "lng": 113.562055,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_337)",
+    "lat": 22.199759,
+    "lng": 113.562073,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1332)",
+    "lat": 22.198396,
+    "lng": 113.557712,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2940)",
+    "lat": 22.19831,
+    "lng": 113.5574,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2933)",
+    "lat": 22.198063,
+    "lng": 113.557243,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2938)",
+    "lat": 22.197502,
+    "lng": 113.556736,
+    "lanesForward": [
+      {
+        "icon": "slight_right",
+        "label": "右前方"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 羅理基博士大馬路 Avenida do Dr. Rodrigo Rodrigues (road_1690)",
+    "lat": 22.197411,
+    "lng": 113.556477,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1442)",
+    "lat": 22.197194,
+    "lng": 113.556587,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2939)",
+    "lat": 22.196263,
+    "lng": 113.555801,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_338)",
+    "lat": 22.196379,
+    "lng": 113.555971,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬六甲街 Rua de Malaca (road_408)",
+    "lat": 22.195273,
+    "lng": 113.554931,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2936)",
+    "lat": 22.19435,
+    "lng": 113.554356,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_339)",
+    "lat": 22.195301,
+    "lng": 113.555157,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1337)",
+    "lat": 22.19512,
+    "lng": 113.55502,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1338)",
+    "lat": 22.194394,
+    "lng": 113.554472,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1004)",
+    "lat": 22.194081,
+    "lng": 113.554236,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1335)",
+    "lat": 22.193344,
+    "lng": 113.553679,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2950)",
+    "lat": 22.19241,
+    "lng": 113.55297,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2534)",
+    "lat": 22.193107,
+    "lng": 113.5535,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2182)",
+    "lat": 22.19294,
+    "lng": 113.553374,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1256)",
+    "lat": 22.192839,
+    "lng": 113.553298,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2181)",
+    "lat": 22.192506,
+    "lng": 113.553046,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.191807,
+    "lng": 113.551621,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.191699,
+    "lng": 113.551335,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.190745,
+    "lng": 113.550375,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      }
+    ],
+    "lanesBackward": [
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ]
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.190332,
+    "lng": 113.550556,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.190137,
+    "lng": 113.550609,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 宋玉生廣場 Alameda Dr. Carlos d'Assumpção (road_1761)",
+    "lat": 22.188515,
+    "lng": 113.551321,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 宋玉生廣場 Alameda Dr. Carlos d'Assumpção (road_1761)",
+    "lat": 22.189279,
+    "lng": 113.550984,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 宋玉生廣場 Alameda Dr. Carlos d'Assumpção (road_1761)",
+    "lat": 22.187707,
+    "lng": 113.551678,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 宋玉生廣場 Alameda Dr. Carlos d'Assumpção (road_1979)",
+    "lat": 22.187002,
+    "lng": 113.551989,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "left_right",
+        "label": "左轉/右轉"
+      },
+      {
+        "icon": "right",
+        "label": "右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.190602,
+    "lng": 113.551871,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.191249,
+    "lng": 113.551691,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.189444,
+    "lng": 113.552483,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.191713,
+    "lng": 113.552928,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_1674)",
+    "lat": 22.191099,
+    "lng": 113.553194,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_172)",
+    "lat": 22.189294,
+    "lng": 113.552445,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.189234,
+    "lng": 113.552576,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.188796,
+    "lng": 113.552769,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.188141,
+    "lng": 113.553058,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_14)",
+    "lat": 22.187516,
+    "lng": 113.553333,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_172)",
+    "lat": 22.188542,
+    "lng": 113.552776,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_172)",
+    "lat": 22.189848,
+    "lng": 113.5522,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_172)",
+    "lat": 22.191145,
+    "lng": 113.551629,
+    "lanesForward": [
+      {
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "u_turn",
+        "label": "迴轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.190089,
+    "lng": 113.552199,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬濟時總督大馬路 Avenida do Governador Jaime Silvério Marques (road_13)",
+    "lat": 22.190749,
+    "lng": 113.551908,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.211874,
+    "lng": 113.553007,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.21172,
+    "lng": 113.55306,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "lat": 22.211448,
+    "lng": 113.553204,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 馬場東大馬路 Avenida Leste do Hipódromo (road_1408)",
+    "lat": 22.21192,
+    "lng": 113.554014,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_2010)",
+    "lat": 22.210094,
+    "lng": 113.554697,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1985)",
+    "lat": 22.208161,
+    "lng": 113.557034,
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_1986)",
+    "lat": 22.207688,
+    "lng": 113.557606,
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  }
+]

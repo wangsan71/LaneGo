@@ -6,7 +6,7 @@ cert.pem
 key.pem
 
 # Raw / large data files not needed for the live site
-macau_osm_fr.json
+data/**/osm_fr.json
 *.osm
 *.pbf
 

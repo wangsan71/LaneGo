@@ -300,6 +300,21 @@
     <script src="https://unpkg.com/maplibre-gl@3.6.2/dist/maplibre-gl.js"></script>
 
     <script>
+        // ========== 內嵌車道圖示（解決 GitHub Pages 載入失敗問題）==========
+        const ICON_SVGS = {
+            straight: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/></svg>',
+            left: '<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="20,10 4,24 20,24" fill="#1a73e8"/></svg>',
+            right: '<svg viewBox="0 0 48 48"><rect x="20" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="28,10 44,24 28,24" fill="#1a73e8"/></svg>',
+            slight_left: '<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(-45,16,26)"/><polygon points="4,2 12,0 8,8" fill="#1a73e8" transform="rotate(-45,8,4)"/></svg>',
+            slight_right: '<svg viewBox="0 0 48 48"><rect x="10" y="10" width="12" height="32" rx="4" fill="#1a73e8" transform="rotate(45,16,26)"/><polygon points="44,2 36,0 40,8" fill="#1a73e8" transform="rotate(45,40,4)"/></svg>',
+            straight_left: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="8" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="6,4 2,14 12,10" fill="#1a73e8"/></svg>',
+            straight_right: '<svg viewBox="0 0 48 48"><rect x="18" y="6" width="12" height="36" rx="4" fill="#1a73e8"/><polygon points="24,0 13,14 35,14" fill="#1a73e8"/><rect x="32" y="16" width="8" height="26" rx="4" fill="#1a73e8"/><polygon points="42,4 46,14 36,10" fill="#1a73e8"/></svg>',
+            left_right: '<svg viewBox="0 0 48 48"><rect x="4" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="4,10 0,22 14,16" fill="#1a73e8"/><rect x="36" y="24" width="8" height="18" rx="4" fill="#1a73e8"/><polygon points="44,10 48,22 34,16" fill="#1a73e8"/><line x1="16" y1="22" x2="32" y2="22" stroke="#1a73e8" stroke-width="6" stroke-linecap="round"/></svg>',
+            u_turn: '<svg viewBox="0 0 48 48"><path d="M20,6 L20,28 A16,16 0 0,0 44,32" fill="none" stroke="#1a73e8" stroke-width="7" stroke-linecap="round"/><polygon points="44,18 36,26 40,36" fill="#1a73e8"/></svg>',
+            merge_left: '<svg viewBox="0 0 48 48"><rect x="24" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="12" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="12,2 24,12 18,20" fill="#1a73e8"/></svg>',
+            merge_right: '<svg viewBox="0 0 48 48"><rect x="16" y="6" width="8" height="16" rx="4" fill="#1a73e8"/><rect x="28" y="22" width="8" height="20" rx="4" fill="#1a73e8"/><polygon points="36,2 24,12 30,20" fill="#1a73e8"/></svg>'
+        };
+
         // ========== 地圖初始化（澳門中心） ==========
         const macauCenter = [113.5439, 22.1987]; // Maplibre 用 [lng, lat]
 
@@ -343,15 +358,57 @@
             }
         }
 
+        // 位置標記：藍點 + 方向扇形（Canvas 繪製）
+        const markerCanvas = document.createElement('canvas');
+        markerCanvas.width = 64; markerCanvas.height = 64;
+        markerCanvas.style.position = 'absolute';
+        const markerCtx = markerCanvas.getContext('2d');
+
+        function drawMarker(heading) {
+            const cx = 32, cy = 32;
+            markerCtx.clearRect(0, 0, 64, 64);
+
+            // 外圈光暈
+            markerCtx.beginPath();
+            markerCtx.arc(cx, cy, 20, 0, Math.PI * 2);
+            markerCtx.fillStyle = 'rgba(26, 115, 232, 0.12)';
+            markerCtx.fill();
+
+            // 方向扇形（如有航向）
+            if (heading !== null && !isNaN(heading) && heading >= 0) {
+                markerCtx.beginPath();
+                markerCtx.moveTo(cx, cy);
+                const rad = (heading - 90) * Math.PI / 180;
+                markerCtx.arc(cx, cy, 24, rad - 0.45, rad + 0.45);
+                markerCtx.closePath();
+                markerCtx.fillStyle = 'rgba(26, 115, 232, 0.25)';
+                markerCtx.fill();
+                markerCtx.strokeStyle = 'rgba(26, 115, 232, 0.5)';
+                markerCtx.lineWidth = 1.5;
+                markerCtx.stroke();
+            }
+
+            // 藍點
+            markerCtx.beginPath();
+            markerCtx.arc(cx, cy, 9, 0, Math.PI * 2);
+            markerCtx.fillStyle = '#1a73e8';
+            markerCtx.fill();
+            markerCtx.strokeStyle = '#ffffff';
+            markerCtx.lineWidth = 3;
+            markerCtx.stroke();
+
+            // 中心白點
+            markerCtx.beginPath();
+            markerCtx.arc(cx, cy, 3, 0, Math.PI * 2);
+            markerCtx.fillStyle = '#ffffff';
+            markerCtx.fill();
+        }
+
+        drawMarker(null);
+
         const carMarker = new maplibregl.Marker({
-            element: (() => {
-                const div = document.createElement('div');
-                div.innerHTML = '🚗';
-                div.style.fontSize = '32px';
-                div.style.lineHeight = '1';
-                div.style.filter = 'drop-shadow(0 2px 4px rgba(0,0,0,0.3))';
-                return div;
-            })()
+            element: markerCanvas,
+            anchor: 'center'
         }).setLngLat(macauCenter).addTo(map);
         carMarker.getElement().style.display = 'none';
 
@@ -360,13 +417,13 @@
 
         async function loadRoadData() {
             try {
-                const res = await fetch('macau_roads.json');
+                const res = await fetch('data/macau/roads.json');
                 roadDatabase = await res.json();
                 renderRoadsOnMap();
                 renderGpsWaiting();
             } catch (e) {
                 document.getElementById('roadName').innerHTML = '無法載入道路資料';
-                document.getElementById('lanesRow').innerHTML = '<div class="no-road">請確認 macau_roads.json 存在</div>';
+                document.getElementById('lanesRow').innerHTML = '<div class="no-road">請確認 data/macau/roads.json 存在</div>';
                 console.error(e);
             }
         }
@@ -521,9 +578,13 @@
         let orientationOffset = 0; // 用移動修正的偏差值
         let lastOrientationUpdate = 0;
         let lastGpsUpdate = 0;
+        let lastGpsHeading = null;       // 上次 GPS 航向（用於轉彎偵測）
+        let lastGpsHeadingTime = 0;      // GPS 航向時間戳
         const ORIENTATION_THROTTLE_MS = 500; // 方向更新間隔
-        const ORIENTATION_SMOOTHING = 0.12;  // 指數平滑係數（越小越慢越穩）
+        const ORIENTATION_SMOOTHING = 0.20;  // 指數平滑係數（提高響應速度）
         const GPS_THROTTLE_MS = 500;         // GPS 顯示更新間隔
+        const TURN_DETECT_ANGLE = 30;        // 轉彎偵測閾值（度）
+        const OFFSET_EWMA_ALPHA = 0.3;       // 偏移校正 EWMA 係數（提高響應）
 
         function renderLanes(road, direction, currentLaneIndex = 0) {
             const lanes = direction === 'forward' ? road.lanesForward : road.lanesBackward;
@@ -538,8 +599,9 @@
                 const laneNum = i + 1;
                 const box = document.createElement('div');
                 box.className = 'lane-box';
+                const svg = ICON_SVGS[lane.icon] || ICON_SVGS['straight']; // fallback to straight
                 box.innerHTML = `
-                    <img class="lane-arrow" src="icons/${lane.icon}.svg" alt="${lane.label}" />
+                    <div class="lane-arrow">${svg}</div>
                     <div class="lane-label">${lane.label}</div>
                     <div class="lane-number">第 ${laneNum} 車道</div>
                 `;
@@ -595,34 +657,37 @@
                 return;
             }
 
-            // 決定使用哪個航向：GPS 航向優先，其次修正後的裝置方向，最後用位置推估
+            // 決定使用哪個航向：GPS 航向優先，裝置方向為備用
             let effectiveHeading = null;
-            let headingSource = '';
 
-            if (gpsHeading !== null && !isNaN(gpsHeading)) {
+            if (gpsHeading !== null && !isNaN(gpsHeading) && gpsHeading >= 0) {
+                // GPS 航向最可靠，直接使用
                 effectiveHeading = gpsHeading;
-                headingSource = 'GPS';
             } else if (orientationEnabled && smoothedDeviceHeading !== null && !isNaN(smoothedDeviceHeading)) {
+                // 無 GPS 航向時，使用修正後的裝置方向
                 effectiveHeading = normalizeAngle(smoothedDeviceHeading - orientationOffset);
-                headingSource = '裝置方向';
             } else if (lastPositions.length >= 2) {
+                // 從歷史位置推算航向
                 const prev = lastPositions[lastPositions.length - 2];
                 effectiveHeading = bearing(prev.lat, prev.lng, lat, lng);
-                headingSource = '移動推估';
             } else {
+                // 沒有任何航向資訊，假設沿道路方向
                 effectiveHeading = roadBearing(nearest.road);
-                headingSource = '道路預設';
             }
 
             const rb = roadBearing(nearest.road);
             let diff = Math.abs(normalizeAngle(effectiveHeading - rb));
             if (diff > 180) diff = 360 - diff;
 
-            // 用 GPS 航向校正裝置方向偏差（移動時才校正）
-            if (orientationEnabled && smoothedDeviceHeading !== null && gpsHeading !== null && !isNaN(gpsHeading)) {
+            // 用 GPS 航向校正裝置方向偏差（移動時更新，快速收斂）
+            if (orientationEnabled && smoothedDeviceHeading !== null && gpsHeading !== null && !isNaN(gpsHeading) && gpsHeading >= 0) {
                 const rawDiff = normalizeAngle(smoothedDeviceHeading - gpsHeading);
-                // 只在校正值穩定時更新，避免跳動
-                orientationOffset = orientationOffset * 0.9 + rawDiff * 0.1;
+                // EWMA 快速收斂：alpha=0.3 比原來 0.1 快 3 倍
+                if (orientationOffset === 0) {
+                    orientationOffset = rawDiff; // 第一次直接賦值
+                } else {
+                    orientationOffset = normalizeAngle(orientationOffset * (1 - OFFSET_EWMA_ALPHA) + rawDiff * OFFSET_EWMA_ALPHA);
+                }
             }
 
             const direction = diff <= 90 ? 'forward' : 'backward';
@@ -674,10 +739,19 @@
                     smoothedDeviceHeading = normalizeAngle(smoothedDeviceHeading + diff * ORIENTATION_SMOOTHING);
                 }
 
-                const correctedHeading = normalizeAngle(smoothedDeviceHeading - orientationOffset);
-                orientValueEl.textContent = `${Math.round(smoothedDeviceHeading)} (修正 ${Math.round(orientationOffset)})`;
-                compassSvg.style.transform = `rotate(${-correctedHeading}deg)`;
-                rotateMapToHeading(correctedHeading);
+                // 地圖旋轉：優先使用 GPS 航向（駕駛場景更可靠）
+                const gpsHeadingAge = now - lastGpsHeadingTime;
+                if (lastGpsHeading !== null && gpsHeadingAge < 3000) {
+                    // GPS 航向可用且近 3 秒內更新 → 直接用 GPS 航向
+                    rotateMapToHeading(lastGpsHeading);
+                    orientValueEl.textContent = `${Math.round(smoothedDeviceHeading)} (GPS 航向)`;
+                } else if (orientationEnabled) {
+                    const correctedHeading = normalizeAngle(smoothedDeviceHeading - orientationOffset);
+                    rotateMapToHeading(correctedHeading);
+                    orientValueEl.textContent = `${Math.round(smoothedDeviceHeading)} (修正 ${Math.round(orientationOffset)})`;
+                }
+
+                compassSvg.style.transform = `rotate(${-smoothedDeviceHeading}deg)`;
 
                 // 如果已有位置，更新車道顯示
                 if (lastPositions.length > 0) {
@@ -691,6 +765,8 @@
             orientationEnabled = true;
             smoothedDeviceHeading = null;
             orientationOffset = 0;
+            lastGpsHeading = null;
+            lastGpsHeadingTime = 0;
             orientBtn.classList.remove('off');
             compassRing.classList.add('active');
             window.addEventListener('deviceorientation', handleOrientation, true);
@@ -702,6 +778,9 @@
             window.removeEventListener('deviceorientation', handleOrientation, true);
             deviceHeading = null;
             smoothedDeviceHeading = null;
+            orientationOffset = 0;
+            lastGpsHeading = null;
+            lastGpsHeadingTime = 0;
             orientValueEl.textContent = '已關閉';
             compassRing.classList.remove('active');
             map.setBearing(0);
@@ -765,7 +844,23 @@
 
                     carMarker.getElement().style.display = 'block';
                     carMarker.setLngLat([lng, lat]);
+                    drawMarker(heading);
                     map.setCenter([lng, lat]);
+
+                    // 儲存 GPS 航向供指南針使用
+                    if (heading !== null && !isNaN(heading) && heading >= 0) {
+                        // 轉彎偵測：GPS 航向變化 > TURN_DETECT_ANGLE 度 → 重置偏移
+                        if (lastGpsHeading !== null && lastGpsHeadingTime > 0) {
+                            let hdgChange = Math.abs(normalizeAngle(heading - lastGpsHeading));
+                            if (hdgChange > 180) hdgChange = 360 - hdgChange;
+                            if (hdgChange > TURN_DETECT_ANGLE && smoothedDeviceHeading !== null) {
+                                // 轉彎中：直接重設偏移以匹配新方向
+                                orientationOffset = normalizeAngle(smoothedDeviceHeading - heading);
+                            }
+                        }
+                        lastGpsHeading = heading;
+                        lastGpsHeadingTime = now;
+                    }
 
                     // 節流：GPS 顯示更新不要太快
                     if (now - lastGpsUpdate >= GPS_THROTTLE_MS) {
