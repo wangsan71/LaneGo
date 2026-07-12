@@ -41,7 +41,7 @@ overrides.forEach(ov => {
             if (d < bestDist) { bestDist = d; best = r; }
         });
     });
-    if (best && bestDist < 30) {
+    if (best && bestDist < 250) {
         if (ov.lanesForward && ov.lanesForward.length > 0) best.lanesForward = ov.lanesForward;
         if (ov.lanesBackward && ov.lanesBackward.length > 0) best.lanesBackward = ov.lanesBackward;
         applied++;

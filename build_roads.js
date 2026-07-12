@@ -683,7 +683,7 @@ function applyOverrides(roads, overrides) {
             });
         });
 
-        if (bestRoad && bestDist < 100) {  // 100 米內匹配（放寬以容納 OSM 節點間距）
+        if (bestRoad && bestDist < 250) {  // 250 米內匹配
             bestRoad._manualOverride = true;
             if (override.lanesForward) {
                 bestRoad.lanesForward = override.lanesForward;

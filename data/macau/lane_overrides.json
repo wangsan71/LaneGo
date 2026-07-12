@@ -446,8 +446,8 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1915)",
-    "lat": 22.212239,
+    "comment": "✏️ 永定街 (road_3031)",
+    "lat": 22.212241,
     "lng": 113.552395,
     "lanesForward": [
       {
@@ -462,41 +462,41 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 馬場東大馬路 Avenida Leste do Hipódromo (road_587)",
-    "lat": 22.211073,
-    "lng": 113.553665,
+    "comment": "✏️ 勞動節大馬路 Avenida 1 de Maio (road_2450)",
+    "lat": 22.210979,
+    "lng": 113.553626,
     "lanesForward": [
       {
         "icon": "straight",
         "label": "直走"
       },
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_right",
+        "label": "直走 / 右轉"
       }
     ],
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "comment": "✏️ 永定街 (road_3031)",
     "lat": 22.212164,
-    "lng": 113.552953,
+    "lng": 113.552955,
     "lanesForward": [
       {
         "icon": "straight",
         "label": "直走"
       },
       {
-        "icon": "right",
-        "label": "右轉"
+        "icon": "straight_right",
+        "label": "直走/右轉"
       }
     ],
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
-    "lat": 22.212328,
-    "lng": 113.551727,
+    "comment": "✏️ 永定街 (road_3031)",
+    "lat": 22.212329,
+    "lng": 113.551725,
     "lanesForward": [
       {
         "icon": "straight",
@@ -526,9 +526,9 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
+    "comment": "✏️ 永定街 (road_3031)",
     "lat": 22.212507,
-    "lng": 113.550374,
+    "lng": 113.550379,
     "lanesForward": [
       {
         "icon": "straight_left",
@@ -990,9 +990,9 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2950)",
-    "lat": 22.19241,
-    "lng": 113.55297,
+    "comment": "✏️ 友誼大馬路 Avenida da Amizade (road_2181)",
+    "lat": 22.192506,
+    "lng": 113.553046,
     "lanesForward": [
       {
         "icon": "straight",
@@ -1479,9 +1479,9 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
-    "lat": 22.21172,
-    "lng": 113.55306,
+    "comment": "✏️ 菜園路 (road_3036)",
+    "lat": 22.211714,
+    "lng": 113.553062,
     "lanesForward": [
       {
         "icon": "straight",
@@ -1495,13 +1495,13 @@
     "lanesBackward": []
   },
   {
-    "comment": "✏️ 永定街 Rua da Serenidade (road_1935)",
-    "lat": 22.211448,
+    "comment": "✏️ 菜園路 (road_3036)",
+    "lat": 22.211445,
     "lng": 113.553204,
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走/左轉"
+        "icon": "straight_right",
+        "label": "直走/右轉"
       },
       {
         "icon": "straight",
@@ -1571,6 +1571,22 @@
         "icon": "straight_left",
         "label": "直走/左轉"
       },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": []
+  },
+  {
+    "comment": "✏️ 菜園路 (road_3036)",
+    "lat": 22.211108,
+    "lng": 113.553475,
+    "lanesForward": [
       {
         "icon": "straight",
         "label": "直走"
