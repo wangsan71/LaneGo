@@ -27702,12 +27702,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走 / 左轉"
       }
     ],
     "lanesBackward": [],
@@ -70284,12 +70280,7 @@
         "label": "直走"
       }
     ],
-    "lanesBackward": [
-      {
-        "icon": "right",
-        "label": "右轉"
-      }
-    ],
+    "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
     "length": 207.7
@@ -136003,6 +135994,14 @@
       ]
     ],
     "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
