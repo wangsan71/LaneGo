@@ -7,6 +7,7 @@ key.pem
 
 # Raw / large data files not needed for the live site
 data/**/osm_fr.json
+*_osm_fr.json
 *.osm
 *.pbf
 
@@ -25,3 +26,10 @@ Thumbs.db
 # Build artifacts & temp files
 macau_roads_v1.json
 .omo/
+.playwright-mcp/
+*.bak
+*.zip
+
+# Local agent/editor configuration
+AGENTS.md
+opencode.json
