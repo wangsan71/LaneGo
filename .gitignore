@@ -11,6 +11,9 @@ data/**/osm_fr.json
 *.osm
 *.pbf
 
+# Local copies exported by the lane override editor
+data/**/lane_overrides (*).json
+
 # Logs
 *.log
 npm-debug.log*
