@@ -433,7 +433,7 @@ node data_editor.js <城市> override <lat> <lng> "修正說明" \
 ```
 
 **可用圖示名稱：**
-`straight`, `left`, `right`, `slight_left`, `slight_right`, `straight_left`, `straight_right`, `left_right`, `u_turn`, `merge_left`, `merge_right`
+`straight`, `left`, `right`, `slight_left`, `slight_right`, `straight_left`, `straight_right`, `left_right`, `u_turn`, `uturn_left`, `uturn_right`, `merge_left`, `merge_right`
 
 **範例：**
 ```bash
@@ -542,7 +542,8 @@ OSM 的 `turn:lanes` 標籤標示的是 way 端點（路口）的車道方向，
 | `highway` | string | - | OSM 道路類型（primary, secondary, ...） |
 | `oneway` | boolean | - | 是否為單向道路 |
 | `length` | number | - | 路段長度（公尺） |
-| `junction` | string | - | 環島標記（`"roundabout"`） |
+| `junction` | string | - | OSM 迴旋道路類型：`"roundabout"` 或 `"circular"` |
+| `circularDirection` | string | - | 已判定的迴旋方向：`"left"` 或 `"right"`；無法可靠判定時省略 |
 | `destinations` | string[] | - | 車道目的地標示（來自 OSM destination:lanes） |
 | `reversed` | boolean | - | 單向逆向標記（oneway=-1） |
 
@@ -566,6 +567,8 @@ OSM 的 `turn:lanes` 標籤標示的是 way 端點（路口）的車道方向，
 | `straight_right` | ↑↱ | 直走 / 右轉 |
 | `left_right` | ↰↱ | 左轉 / 右轉 |
 | `u_turn` | ↩ | 調頭 |
+| `uturn_left` | ↩ | 左迴旋 |
+| `uturn_right` | ↪ | 右迴旋 |
 | `merge_left` | ⇤ | 靠左 |
 | `merge_right` | ⇥ | 靠右 |
 
@@ -609,6 +612,23 @@ OSM 的 `turn:lanes` 標籤標示的是 way 端點（路口）的車道方向，
     "highway": "secondary",
     "oneway": true,
     "length": 28.15
+  },
+  {
+    "id": "road_3",
+    "name": "圓形地",
+    "path": [
+      [22.191000, 113.540000],
+      [22.191100, 113.540100]
+    ],
+    "lanesForward": [
+      { "icon": "uturn_right", "label": "右迴旋" }
+    ],
+    "lanesBackward": [],
+    "highway": "primary",
+    "oneway": true,
+    "junction": "roundabout",
+    "circularDirection": "right",
+    "length": 18.42
   }
 ]
 ```
@@ -659,8 +679,8 @@ node apply_overrides.js macau
 ```
 
 **匹配規則：**
-- 系統會找到距離指定座標 **30m 內**的最近路段
-- 如果超過 30m，該修正會被跳過（顯示警告）
+- 系統會找到距離指定座標 **250m 內**的最近路段
+- 如果超過 250m，該修正會被跳過（顯示警告）
 - 建議使用 GPS 實測的準確座標
 
 ### 視覺化編輯器
