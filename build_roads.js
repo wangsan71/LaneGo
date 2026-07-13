@@ -106,6 +106,36 @@ function parseTurnLanes(value) {
     });
 }
 
+// 判斷迴旋道路的行駛方向。OSM 的 roundabout 通常按道路方向繪製，
+// 但部分資料只有 junction=circular，因此用幾何的有向面積作為補充。
+function getCircularDirection(path, tags) {
+    const junction = tags.junction;
+    if (junction !== 'roundabout' && junction !== 'circular') return null;
+
+    if (tags['roundabout:direction'] === 'left' || tags['roundabout:direction'] === 'right') {
+        return tags['roundabout:direction'];
+    }
+
+    if (tags.oneway === '-1') return 'left';
+    if (tags.oneway === 'yes' || tags.oneway === 'true' || tags.oneway === '1') {
+        let area = 0;
+        for (let i = 1; i < path.length; i++) {
+            area += path[i - 1][1] * path[i][0] - path[i][1] * path[i - 1][0];
+        }
+        if (Math.abs(area) > 1e-12) return area > 0 ? 'left' : 'right';
+    }
+
+    return null;
+}
+
+function circularLaneIcon(direction) {
+    return direction === 'left' ? 'uturn_left' : 'uturn_right';
+}
+
+function circularLaneLabel(direction) {
+    return direction === 'left' ? '左迴旋' : '右迴旋';
+}
+
 function generateDefaultLanes(numLanes) {
     const lanes = [];
     for (let i = 0; i < numLanes; i++) {
@@ -377,7 +407,8 @@ ways.forEach(way => {
     // ── 解析單向屬性 ──
     const isOneway = tags.oneway === 'yes' || tags.oneway === 'true' || tags.oneway === '1';
     const isReverseOneway = tags.oneway === '-1';
-    const isRoundabout = tags.junction === 'roundabout';
+    const isRoundabout = tags.junction === 'roundabout' || tags.junction === 'circular';
+    const circularDirection = getCircularDirection(rawPath, tags);
 
     // ── 計算車道數 ──
     const totalLanes = tags.lanes ? parseInt(tags.lanes, 10) : null;
@@ -459,7 +490,13 @@ ways.forEach(way => {
     }
 
     if (isRoundabout) {
-        lanesForward = lanesForward.map(() => ({ icon: 'straight', label: '直走' }));
+        const circularLane = circularDirection
+            ? { icon: circularLaneIcon(circularDirection), label: circularLaneLabel(circularDirection) }
+            : { icon: 'straight', label: '直走' };
+        lanesForward = lanesForward.length > 0
+            ? lanesForward.map(() => ({ ...circularLane }))
+            : [{ ...circularLane }];
+        lanesBackward = [];
     }
 
     // ── 提取額外元數據 ──
@@ -566,7 +603,10 @@ ways.forEach(way => {
             roadData.destinations = destinations;
         }
         if (isRoundabout) {
-            roadData.junction = 'roundabout';
+            roadData.junction = tags.junction;
+            if (circularDirection) {
+                roadData.circularDirection = circularDirection;
+            }
         }
         if (isReverseOneway) {
             roadData.reversed = true;
