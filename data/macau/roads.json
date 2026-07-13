@@ -9207,6 +9207,10 @@
       {
         "icon": "straight",
         "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -27494,11 +27498,11 @@
     "lanesForward": [
       {
         "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "label": "直走/左轉"
       },
       {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
@@ -32903,8 +32907,8 @@
         "label": "直走"
       },
       {
-        "icon": "straight_right",
-        "label": "直走/右轉"
+        "icon": "right",
+        "label": "右轉"
       }
     ],
     "lanesBackward": [],
@@ -33305,8 +33309,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走/左轉"
       },
       {
         "icon": "straight",
@@ -33945,8 +33949,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "straight",
+        "label": "直走"
       },
       {
         "icon": "straight",
@@ -34009,15 +34013,19 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走/左轉"
       },
       {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -34052,8 +34060,12 @@
     ],
     "lanesBackward": [
       {
-        "icon": "left",
-        "label": "左轉"
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -36871,8 +36883,8 @@
         "label": "直走"
       },
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_right",
+        "label": "直走 / 右轉"
       }
     ],
     "lanesBackward": [],
@@ -64508,8 +64520,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走/左轉"
       }
     ],
     "lanesBackward": [],
@@ -88465,8 +88477,12 @@
     ],
     "lanesBackward": [
       {
-        "icon": "right",
-        "label": "右轉"
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
       }
     ],
     "highway": "primary",
@@ -90270,18 +90286,22 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "left",
+        "label": "左轉"
       },
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "left",
+        "label": "左轉"
       }
     ],
     "lanesBackward": [
       {
-        "icon": "left",
-        "label": "左轉"
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -120085,8 +120105,12 @@
     ],
     "lanesBackward": [
       {
-        "icon": "right",
-        "label": "右轉"
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -120308,6 +120332,10 @@
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -123397,6 +123425,22 @@
     "name": "馬交石巷 Travessa de Má Káu Séak",
     "path": [
       [
+        22.20575476221353,
+        113.55898651349565
+      ],
+      [
+        22.205741321999298,
+        113.5590590979624
+      ],
+      [
+        22.20570884147611,
+        113.55913410191243
+      ],
+      [
+        22.205657320630692,
+        113.55918975000259
+      ],
+      [
         22.205584,
         113.55922890000001
       ],
@@ -123423,12 +123467,28 @@
       [
         22.204854100000002,
         113.5594638
+      ],
+      [
+        22.204786202733402,
+        113.55948863888341
+      ],
+      [
+        22.20472432676553,
+        113.55954684766363
+      ],
+      [
+        22.2046893967715,
+        113.55962014760865
+      ],
+      [
+        22.20467442677146,
+        113.55969883725646
       ]
     ],
     "lanesForward": [
       {
-        "icon": "right",
-        "label": "右轉"
+        "icon": "left",
+        "label": "左轉"
       }
     ],
     "lanesBackward": [
@@ -123439,7 +123499,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 85.43
+    "length": 152.63
   },
   {
     "id": "road_2758",
@@ -125751,6 +125811,10 @@
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -128425,8 +128489,12 @@
     ],
     "lanesBackward": [
       {
-        "icon": "left",
-        "label": "左轉"
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -128462,8 +128530,12 @@
     ],
     "lanesBackward": [
       {
-        "icon": "left",
-        "label": "左轉"
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -132738,8 +132810,8 @@
         "label": "直走"
       },
       {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "icon": "right",
+        "label": "右轉"
       }
     ],
     "lanesBackward": [],
@@ -143138,6 +143210,10 @@
       {
         "icon": "straight",
         "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
@@ -145016,6 +145092,10 @@
       {
         "icon": "straight",
         "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -145474,6 +145554,10 @@
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -162420,16 +162504,16 @@
       {
         "icon": "left",
         "label": "左轉"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
       }
     ],
     "lanesBackward": [
       {
-        "icon": "right",
-        "label": "右轉"
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "highway": "primary",
@@ -162527,8 +162611,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "left",
+        "label": "左轉"
       },
       {
         "icon": "straight",
@@ -163902,6 +163986,10 @@
       ]
     ],
     "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -173935,8 +174023,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走/左轉"
+        "icon": "straight",
+        "label": "直走"
       },
       {
         "icon": "straight",
@@ -199906,8 +199994,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
@@ -200171,8 +200259,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走/左轉"
       }
     ],
     "lanesBackward": [],
@@ -203104,11 +203192,15 @@
         "label": "直走"
       },
       {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -203142,6 +203234,10 @@
       }
     ],
     "lanesBackward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
