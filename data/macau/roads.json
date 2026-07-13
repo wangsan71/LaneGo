@@ -536,7 +536,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 626.68
+    "length": 626.69
   },
   {
     "id": "road_12",
@@ -2175,7 +2175,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 183.34
+    "length": 183.33
   },
   {
     "id": "road_50",
@@ -2751,7 +2751,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 323.68
+    "length": 323.69
   },
   {
     "id": "road_58",
@@ -4921,7 +4921,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 417.83
+    "length": 417.84
   },
   {
     "id": "road_81",
@@ -5135,7 +5135,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 508.77
+    "length": 508.76
   },
   {
     "id": "road_85",
@@ -5255,7 +5255,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 186.61
+    "length": 186.62
   },
   {
     "id": "road_88",
@@ -5427,7 +5427,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": true,
-    "length": 727.16
+    "length": 727.15
   },
   {
     "id": "road_90",
@@ -5975,7 +5975,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 292.72
+    "length": 292.73
   },
   {
     "id": "road_101",
@@ -6019,7 +6019,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 302.71
+    "length": 302.7
   },
   {
     "id": "road_102",
@@ -6067,7 +6067,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 331.43
+    "length": 331.42
   },
   {
     "id": "road_103",
@@ -6175,7 +6175,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 390.37
+    "length": 390.36
   },
   {
     "id": "road_104",
@@ -6231,7 +6231,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 105.63
+    "length": 105.64
   },
   {
     "id": "road_105",
@@ -6367,7 +6367,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 142.33
+    "length": 142.32
   },
   {
     "id": "road_108",
@@ -6431,7 +6431,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 260.42
+    "length": 260.43
   },
   {
     "id": "road_109",
@@ -6615,7 +6615,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 433.99
+    "length": 433.98
   },
   {
     "id": "road_112",
@@ -6667,7 +6667,7 @@
     "lanesBackward": [],
     "highway": "primary_link",
     "oneway": true,
-    "length": 98.16
+    "length": 98.15
   },
   {
     "id": "road_113",
@@ -6799,7 +6799,7 @@
     "lanesBackward": [],
     "highway": "primary_link",
     "oneway": true,
-    "length": 190.27
+    "length": 190.28
   },
   {
     "id": "road_115",
@@ -6923,7 +6923,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 112.59
+    "length": 112.6
   },
   {
     "id": "road_117",
@@ -7409,7 +7409,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 476.05
+    "length": 476.06
   },
   {
     "id": "road_128",
@@ -8026,7 +8026,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 1867.7
+    "length": 1867.68
   },
   {
     "id": "road_136",
@@ -8571,7 +8571,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 172.04
+    "length": 172.03
   },
   {
     "id": "road_148",
@@ -8881,7 +8881,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 482.9
+    "length": 482.91
   },
   {
     "id": "road_154",
@@ -9889,7 +9889,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 158.37
+    "length": 158.36
   },
   {
     "id": "road_171",
@@ -9929,7 +9929,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 224.71
+    "length": 224.7
   },
   {
     "id": "road_172",
@@ -11346,7 +11346,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 205.71
+    "length": 205.7
   },
   {
     "id": "road_214",
@@ -11611,7 +11611,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 108.63
+    "length": 108.64
   },
   {
     "id": "road_221",
@@ -14789,7 +14789,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 359.3
+    "length": 359.31
   },
   {
     "id": "road_298",
@@ -14818,8 +14818,8 @@
         "label": "直走/右轉"
       },
       {
-        "icon": "slight_right",
-        "label": "右前方"
+        "icon": "right",
+        "label": "右轉"
       }
     ],
     "lanesBackward": [],
@@ -15266,7 +15266,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 286.27
+    "length": 286.26
   },
   {
     "id": "road_308",
@@ -17991,7 +17991,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 222.33
+    "length": 222.34
   },
   {
     "id": "road_370",
@@ -19205,7 +19205,7 @@
     ],
     "highway": "service",
     "oneway": false,
-    "length": 149.38
+    "length": 149.39
   },
   {
     "id": "road_381",
@@ -19906,10 +19906,6 @@
       ]
     ],
     "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
       {
         "icon": "straight",
         "label": "直走"
@@ -22803,7 +22799,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 240.55
+    "length": 240.54
   },
   {
     "id": "road_464",
@@ -22883,7 +22879,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 173.97
+    "length": 173.96
   },
   {
     "id": "road_466",
@@ -22991,7 +22987,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 339.62
+    "length": 339.63
   },
   {
     "id": "road_468",
@@ -23044,7 +23040,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 329.33
+    "length": 329.34
   },
   {
     "id": "road_469",
@@ -24100,7 +24096,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": true,
-    "length": 290.93
+    "length": 290.94
   },
   {
     "id": "road_492",
@@ -25072,7 +25068,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 475.64
+    "length": 475.63
   },
   {
     "id": "road_516",
@@ -25819,7 +25815,7 @@
     "lanesBackward": [],
     "highway": "secondary_link",
     "oneway": true,
-    "length": 91.7
+    "length": 91.69
   },
   {
     "id": "road_532",
@@ -30359,7 +30355,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 199.7
+    "length": 199.69
   },
   {
     "id": "road_639",
@@ -30571,7 +30567,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 516.59
+    "length": 516.58
   },
   {
     "id": "road_641",
@@ -33295,74 +33291,6 @@
     "length": 81.09
   },
   {
-    "id": "road_691",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.199550700000003,
-        113.56181900000001
-      ],
-      [
-        22.1995338,
-        113.56177330000001
-      ],
-      [
-        22.198979200000004,
-        113.55979300000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 218.07
-  },
-  {
-    "id": "road_692",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1969558,
-        113.55640690000001
-      ],
-      [
-        22.1963785,
-        113.5559709
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 78.33
-  },
-  {
     "id": "road_693",
     "name": "友誼大馬路 Avenida da Amizade",
     "path": [
@@ -33884,7 +33812,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 98.3
+    "length": 98.31
   },
   {
     "id": "road_704",
@@ -35636,7 +35564,7 @@
     "length": 36.42
   },
   {
-    "id": "road_749",
+    "id": "road_749_a",
     "name": "菜園路 Rua dos Hortelãos",
     "path": [
       [
@@ -35660,12 +35588,8 @@
         113.553064
       ],
       [
-        22.2115781,
-        113.5531253
-      ],
-      [
-        22.2114468,
-        113.55319910000001
+        22.211579001890264,
+        113.55312489556786
       ]
     ],
     "lanesForward": [
@@ -35681,12 +35605,24 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 84.25
+    "length": 67.68
   },
   {
-    "id": "road_750",
+    "id": "road_749_b",
     "name": "菜園路 Rua dos Hortelãos",
     "path": [
+      [
+        22.211579001890264,
+        113.55312489556786
+      ],
+      [
+        22.2115781,
+        113.5531253
+      ],
+      [
+        22.2114468,
+        113.55319910000001
+      ],
       [
         22.2114468,
         113.55319910000001
@@ -35713,7 +35649,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 24.31
+    "length": 40.88
   },
   {
     "id": "road_751",
@@ -37254,7 +37190,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 136.42
+    "length": 136.43
   },
   {
     "id": "road_788",
@@ -40521,7 +40457,7 @@
     ],
     "highway": "tertiary",
     "oneway": false,
-    "length": 584.4
+    "length": 584.41
   },
   {
     "id": "road_863",
@@ -40787,12 +40723,12 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走/左轉"
-      },
-      {
         "icon": "straight",
         "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
       }
     ],
     "lanesBackward": [],
@@ -41102,7 +41038,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 211.03
+    "length": 211.04
   },
   {
     "id": "road_877",
@@ -41142,7 +41078,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 149.47
+    "length": 149.48
   },
   {
     "id": "road_878",
@@ -41308,7 +41244,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 162.6
+    "length": 162.59
   },
   {
     "id": "road_882",
@@ -41464,7 +41400,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 173.73
+    "length": 173.74
   },
   {
     "id": "road_885",
@@ -43538,7 +43474,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 107.55,
+    "length": 107.54,
     "junction": "roundabout",
     "circularDirection": "right"
   },
@@ -44276,7 +44212,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 153.36
+    "length": 153.37
   },
   {
     "id": "road_952",
@@ -46065,7 +46001,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": false,
-    "length": 113.16
+    "length": 113.17
   },
   {
     "id": "road_997",
@@ -46146,7 +46082,7 @@
     ],
     "highway": "unclassified",
     "oneway": false,
-    "length": 400.92
+    "length": 400.91
   },
   {
     "id": "road_998",
@@ -48608,7 +48544,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 944.35
+    "length": 944.33
   },
   {
     "id": "road_1049",
@@ -48724,7 +48660,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 267.5
+    "length": 267.51
   },
   {
     "id": "road_1050",
@@ -49668,7 +49604,7 @@
     ],
     "highway": "unclassified",
     "oneway": false,
-    "length": 156.24
+    "length": 156.25
   },
   {
     "id": "road_1073",
@@ -50060,7 +49996,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 208.83
+    "length": 208.82
   },
   {
     "id": "road_1084",
@@ -50856,7 +50792,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 381.7
+    "length": 381.69
   },
   {
     "id": "road_1101",
@@ -51193,7 +51129,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 171.56
+    "length": 171.55
   },
   {
     "id": "road_1110",
@@ -51707,7 +51643,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 117.07
+    "length": 117.06
   },
   {
     "id": "road_1121",
@@ -52557,7 +52493,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 146.68
+    "length": 146.67
   },
   {
     "id": "road_1141",
@@ -52625,7 +52561,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 553.18
+    "length": 553.19
   },
   {
     "id": "road_1142",
@@ -53950,7 +53886,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 203.29
+    "length": 203.28
   },
   {
     "id": "road_1172",
@@ -54376,7 +54312,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 3488.61
+    "length": 3488.6
   },
   {
     "id": "road_1181",
@@ -54600,7 +54536,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 124.68,
+    "length": 124.69,
     "junction": "roundabout"
   },
   {
@@ -55325,7 +55261,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 122.25
+    "length": 122.24
   },
   {
     "id": "road_1201",
@@ -56425,7 +56361,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 99.62,
+    "length": 99.61,
     "junction": "roundabout",
     "circularDirection": "right"
   },
@@ -57659,7 +57595,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 206.76,
+    "length": 206.77,
     "junction": "roundabout",
     "circularDirection": "left"
   },
@@ -57725,7 +57661,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 241.95
+    "length": 241.96
   },
   {
     "id": "road_1259",
@@ -58209,7 +58145,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 234.76
+    "length": 234.75
   },
   {
     "id": "road_1266",
@@ -62873,7 +62809,7 @@
     "lanesBackward": [],
     "highway": "service",
     "oneway": true,
-    "length": 791.03
+    "length": 791.02
   },
   {
     "id": "road_1376",
@@ -63203,7 +63139,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 131.5
+    "length": 131.49
   },
   {
     "id": "road_1384",
@@ -63303,7 +63239,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 160.44
+    "length": 160.45
   },
   {
     "id": "road_1385",
@@ -64855,7 +64791,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 399.06
+    "length": 399.07
   },
   {
     "id": "road_1422",
@@ -64891,7 +64827,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 202.86
+    "length": 202.85
   },
   {
     "id": "road_1423",
@@ -65318,7 +65254,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 388.65
+    "length": 388.66
   },
   {
     "id": "road_1433",
@@ -65472,7 +65408,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 202.01
+    "length": 202
   },
   {
     "id": "road_1435",
@@ -65856,7 +65792,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 99.11
+    "length": 99.1
   },
   {
     "id": "road_1441",
@@ -67909,7 +67845,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 281.17
+    "length": 281.16
   },
   {
     "id": "road_1491",
@@ -68289,7 +68225,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 228.02
+    "length": 228.01
   },
   {
     "id": "road_1500",
@@ -68891,7 +68827,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 439.8
+    "length": 439.78
   },
   {
     "id": "road_1512",
@@ -71292,7 +71228,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 119.01
+    "length": 119
   },
   {
     "id": "road_1563",
@@ -75230,7 +75166,7 @@
     ],
     "highway": "residential",
     "oneway": true,
-    "length": 177.45,
+    "length": 177.46,
     "reversed": true
   },
   {
@@ -79576,7 +79512,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 328.06
+    "length": 328.04
   },
   {
     "id": "road_1784",
@@ -79686,7 +79622,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 135.76
+    "length": 135.77
   },
   {
     "id": "road_1786",
@@ -81646,7 +81582,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": true,
-    "length": 151.79
+    "length": 151.78
   },
   {
     "id": "road_1822",
@@ -81978,7 +81914,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 238.58
+    "length": 238.57
   },
   {
     "id": "road_1830",
@@ -82285,7 +82221,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 118.17
+    "length": 118.16
   },
   {
     "id": "road_1838",
@@ -85019,7 +84955,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 223.87
+    "length": 223.88
   },
   {
     "id": "road_1902",
@@ -85414,7 +85350,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 313.4
+    "length": 313.41
   },
   {
     "id": "road_1910",
@@ -85470,7 +85406,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 137.72
+    "length": 137.73
   },
   {
     "id": "road_1911",
@@ -87800,7 +87736,7 @@
     ],
     "highway": "service",
     "oneway": false,
-    "length": 126.61
+    "length": 126.62
   },
   {
     "id": "road_1963",
@@ -88264,7 +88200,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 104.47
+    "length": 104.48
   },
   {
     "id": "road_1974",
@@ -95966,42 +95902,6 @@
     "length": 41.59
   },
   {
-    "id": "road_2161",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.197638800000004,
-        113.55692300000001
-      ],
-      [
-        22.1975243,
-        113.55683610000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 15.56
-  },
-  {
     "id": "road_2162",
     "name": "水塘馬路 Estrada do Reservatório",
     "path": [
@@ -96219,7 +96119,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 297.47
+    "length": 297.48
   },
   {
     "id": "road_2165",
@@ -96495,7 +96395,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 537.23
+    "length": 537.22
   },
   {
     "id": "road_2169",
@@ -96611,7 +96511,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 287.43
+    "length": 287.44
   },
   {
     "id": "road_2171",
@@ -97265,7 +97165,7 @@
     "lanesBackward": [],
     "highway": "primary_link",
     "oneway": true,
-    "length": 257.34
+    "length": 257.33
   },
   {
     "id": "road_2188",
@@ -97992,7 +97892,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 196.22
+    "length": 196.21
   },
   {
     "id": "road_2204",
@@ -98835,7 +98735,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 147.59
+    "length": 147.58
   },
   {
     "id": "road_2227",
@@ -99916,7 +99816,7 @@
     ],
     "highway": "secondary",
     "oneway": false,
-    "length": 1512.21
+    "length": 1512.22
   },
   {
     "id": "road_2243",
@@ -100960,7 +100860,7 @@
     ],
     "highway": "secondary",
     "oneway": false,
-    "length": 1942.1
+    "length": 1942.11
   },
   {
     "id": "road_2252",
@@ -101453,42 +101353,6 @@
     "length": 78.81
   },
   {
-    "id": "road_2265",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.196222000000002,
-        113.55585270000002
-      ],
-      [
-        22.195532600000003,
-        113.555332
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 93.54
-  },
-  {
     "id": "road_2266",
     "name": "友誼橋大馬路 Avenida da Ponte da Amizade",
     "path": [
@@ -101562,7 +101426,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 353.21
+    "length": 353.22
   },
   {
     "id": "road_2268",
@@ -104657,7 +104521,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 124.95
+    "length": 124.96
   },
   {
     "id": "road_2341",
@@ -106777,7 +106641,7 @@
     ],
     "highway": "unclassified",
     "oneway": false,
-    "length": 204.17
+    "length": 204.18
   },
   {
     "id": "road_2387",
@@ -107410,7 +107274,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 304.15
+    "length": 304.16
   },
   {
     "id": "road_2406",
@@ -107940,7 +107804,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 309.13
+    "length": 309.14
   },
   {
     "id": "road_2416",
@@ -108954,7 +108818,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 804.4
+    "length": 804.41
   },
   {
     "id": "road_2437",
@@ -109547,7 +109411,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 316.95
+    "length": 316.94
   },
   {
     "id": "road_2451",
@@ -109611,7 +109475,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 174.79
+    "length": 174.78
   },
   {
     "id": "road_2452",
@@ -109887,7 +109751,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 293.3
+    "length": 293.31
   },
   {
     "id": "road_2458",
@@ -110644,7 +110508,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 198.64
+    "length": 198.65
   },
   {
     "id": "road_2474",
@@ -111759,7 +111623,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 159.58
+    "length": 159.59
   },
   {
     "id": "road_2507",
@@ -113078,7 +112942,7 @@
     ],
     "highway": "unclassified",
     "oneway": false,
-    "length": 927.35
+    "length": 927.36
   },
   {
     "id": "road_2533",
@@ -113375,7 +113239,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 413.7
+    "length": 413.69
   },
   {
     "id": "road_2540",
@@ -114091,7 +113955,7 @@
     "lanesBackward": [],
     "highway": "primary_link",
     "oneway": true,
-    "length": 143.38
+    "length": 143.39
   },
   {
     "id": "road_2557",
@@ -114195,7 +114059,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 302.37
+    "length": 302.38
   },
   {
     "id": "road_2559",
@@ -116275,7 +116139,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 258.17
+    "length": 258.16
   },
   {
     "id": "road_2608",
@@ -116946,9 +116810,21 @@
     "length": 103.73
   },
   {
-    "id": "road_2621",
+    "id": "road_2621_a",
     "name": "友誼大馬路 Avenida da Amizade",
     "path": [
+      [
+        22.199550700000003,
+        113.56181900000001
+      ],
+      [
+        22.1995338,
+        113.56177330000001
+      ],
+      [
+        22.198979200000004,
+        113.55979300000001
+      ],
       [
         22.198979200000004,
         113.55979300000001
@@ -116960,35 +116836,7 @@
       [
         22.198403600000002,
         113.55773740000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 221.1
-  },
-  {
-    "id": "road_2622",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.198403600000002,
         113.55773740000001
@@ -117008,6 +116856,118 @@
       [
         22.198304200000003,
         113.55750650000002
+      ],
+      [
+        22.198304200000003,
+        113.55750650000002
+      ],
+      [
+        22.1982627,
+        113.55744340000001
+      ],
+      [
+        22.1982165,
+        113.55738420000002
+      ],
+      [
+        22.198165200000002,
+        113.55732920000001
+      ],
+      [
+        22.198110500000002,
+        113.5572788
+      ],
+      [
+        22.1980633,
+        113.55724320000002
+      ],
+      [
+        22.197979600000004,
+        113.55718000000002
+      ],
+      [
+        22.197890700000002,
+        113.5571129
+      ],
+      [
+        22.1978502,
+        113.5570823
+      ],
+      [
+        22.1976738,
+        113.55694910000001
+      ],
+      [
+        22.1976738,
+        113.55694910000001
+      ],
+      [
+        22.197638800000004,
+        113.55692300000001
+      ],
+      [
+        22.197638800000004,
+        113.55692300000001
+      ],
+      [
+        22.1975243,
+        113.55683610000001
+      ],
+      [
+        22.1975243,
+        113.55683610000001
+      ],
+      [
+        22.1974403,
+        113.5567728
+      ],
+      [
+        22.1974403,
+        113.5567728
+      ],
+      [
+        22.1971944,
+        113.55658700000001
+      ],
+      [
+        22.1969558,
+        113.55640690000001
+      ],
+      [
+        22.1969558,
+        113.55640690000001
+      ],
+      [
+        22.1963785,
+        113.5559709
+      ],
+      [
+        22.1963785,
+        113.5559709
+      ],
+      [
+        22.1962921,
+        113.55590560000002
+      ],
+      [
+        22.1962921,
+        113.55590560000002
+      ],
+      [
+        22.196235400000003,
+        113.5558627
+      ],
+      [
+        22.196222000000002,
+        113.55585270000002
+      ],
+      [
+        22.196222000000002,
+        113.55585270000002
+      ],
+      [
+        22.196219861452644,
+        113.55585108476704
       ]
     ],
     "lanesForward": [
@@ -117023,7 +116983,35 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 26.3
+    "length": 753.95
+  },
+  {
+    "id": "road_2621_b",
+    "name": "友誼大馬路 Avenida da Amizade",
+    "path": [
+      [
+        22.196219861452644,
+        113.55585108476704
+      ],
+      [
+        22.195532600000003,
+        113.555332
+      ]
+    ],
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [],
+    "highway": "primary",
+    "oneway": true,
+    "length": 93.25
   },
   {
     "id": "road_2623",
@@ -117124,14 +117112,6 @@
       ]
     ],
     "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
       {
         "icon": "straight",
         "label": "直走"
@@ -119498,7 +119478,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 484.73
+    "length": 484.74
   },
   {
     "id": "road_2680",
@@ -120934,7 +120914,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 261.04
+    "length": 261.03
   },
   {
     "id": "road_2714",
@@ -121303,7 +121283,7 @@
     ],
     "highway": "secondary",
     "oneway": true,
-    "length": 496.58,
+    "length": 496.59,
     "reversed": true
   },
   {
@@ -121850,7 +121830,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 145.61
+    "length": 145.62
   },
   {
     "id": "road_2731",
@@ -124102,7 +124082,7 @@
     ],
     "highway": "primary",
     "oneway": false,
-    "length": 373.37
+    "length": 373.36
   },
   {
     "id": "road_2774",
@@ -125956,7 +125936,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 180.01
+    "length": 180
   },
   {
     "id": "road_2822",
@@ -126018,74 +125998,6 @@
     "highway": "residential",
     "oneway": false,
     "length": 58.69
-  },
-  {
-    "id": "road_2823",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1975243,
-        113.55683610000001
-      ],
-      [
-        22.1974403,
-        113.5567728
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 11.39
-  },
-  {
-    "id": "road_2824",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1974403,
-        113.5567728
-      ],
-      [
-        22.1971944,
-        113.55658700000001
-      ],
-      [
-        22.1969558,
-        113.55640690000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 65.74
   },
   {
     "id": "road_2825",
@@ -127132,7 +127044,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 31.2
+    "length": 31.21
   },
   {
     "id": "road_2852",
@@ -128044,7 +127956,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 130.06
+    "length": 130.05
   },
   {
     "id": "road_2874",
@@ -128597,35 +128509,7 @@
       [
         22.199594,
         113.56175390000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 213.02
-  },
-  {
-    "id": "road_2886",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.199594,
         113.56175390000001
@@ -128701,27 +128585,7 @@
       [
         22.2002293,
         113.56204540000002
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 85.99
-  },
-  {
-    "id": "road_2887",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.2002293,
         113.56204540000002
@@ -128747,20 +128611,12 @@
       {
         "icon": "straight",
         "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
       }
     ],
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 486.08
+    "length": 785.09
   },
   {
     "id": "road_2888",
@@ -132257,7 +132113,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 199.92
+    "length": 199.93
   },
   {
     "id": "road_2977",
@@ -132685,7 +132541,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 144.9
+    "length": 144.91
   },
   {
     "id": "road_2989",
@@ -133446,7 +133302,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 275.09
+    "length": 275.1
   },
   {
     "id": "road_3008",
@@ -134262,7 +134118,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": true,
-    "length": 138.89
+    "length": 138.88
   },
   {
     "id": "road_3029",
@@ -136118,7 +135974,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 146.21
+    "length": 146.22
   },
   {
     "id": "road_3072",
@@ -140775,7 +140631,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 314.58
+    "length": 314.57
   },
   {
     "id": "road_3179",
@@ -142577,7 +142433,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 124.44
+    "length": 124.43
   },
   {
     "id": "road_3224",
@@ -142817,7 +142673,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 151.57
+    "length": 151.56
   },
   {
     "id": "road_3230",
@@ -143235,7 +143091,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 149.22
+    "length": 149.21
   },
   {
     "id": "road_3239",
@@ -145781,7 +145637,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 139.2
+    "length": 139.21
   },
   {
     "id": "road_3307",
@@ -147387,7 +147243,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 106.72
+    "length": 106.71
   },
   {
     "id": "road_3349",
@@ -148530,7 +148386,7 @@
     ],
     "highway": "secondary",
     "oneway": false,
-    "length": 180.8
+    "length": 180.81
   },
   {
     "id": "road_3380",
@@ -148705,7 +148561,7 @@
     ],
     "highway": "secondary",
     "oneway": false,
-    "length": 141.66
+    "length": 141.67
   },
   {
     "id": "road_3383",
@@ -149141,7 +148997,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 202.83
+    "length": 202.82
   },
   {
     "id": "road_3392",
@@ -150476,7 +150332,7 @@
     "lanesBackward": [],
     "highway": "unclassified",
     "oneway": true,
-    "length": 557.66
+    "length": 557.65
   },
   {
     "id": "road_3424",
@@ -150624,7 +150480,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 232.37
+    "length": 232.38
   },
   {
     "id": "road_3428",
@@ -151457,7 +151313,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 146.21
+    "length": 146.2
   },
   {
     "id": "road_3453",
@@ -153033,7 +152889,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 282.98
+    "length": 282.97
   },
   {
     "id": "road_3493",
@@ -153267,7 +153123,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 176.47
+    "length": 176.46
   },
   {
     "id": "road_3499",
@@ -153970,12 +153826,20 @@
       [
         22.2110364,
         113.5535576
+      ],
+      [
+        22.2110364,
+        113.5535576
+      ],
+      [
+        22.210979400000003,
+        113.55362650000001
       ]
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "straight",
+        "label": "直走"
       },
       {
         "icon": "straight_right",
@@ -153985,7 +153849,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 9.57
+    "length": 19.08
   },
   {
     "id": "road_3516",
@@ -154911,7 +154775,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 133.19
+    "length": 133.18
   },
   {
     "id": "road_3538",
@@ -155543,7 +155407,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 156.36
+    "length": 156.37
   },
   {
     "id": "road_3547",
@@ -155944,7 +155808,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 148.37
+    "length": 148.38
   },
   {
     "id": "road_3556",
@@ -157152,7 +157016,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 485.67
+    "length": 485.68
   },
   {
     "id": "road_3576",
@@ -159582,7 +159446,7 @@
     "lanesBackward": [],
     "highway": "service",
     "oneway": true,
-    "length": 634.83
+    "length": 634.82
   },
   {
     "id": "road_3626",
@@ -160740,7 +160604,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 133.24
+    "length": 133.23
   },
   {
     "id": "road_3654",
@@ -161206,7 +161070,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 178.26
+    "length": 178.25
   },
   {
     "id": "road_3664",
@@ -161880,7 +161744,7 @@
     "length": 85.95
   },
   {
-    "id": "road_3683",
+    "id": "road_3683_a",
     "name": "祐漢新村第八街 Rua Oito do Bairro Iao Hon",
     "path": [
       [
@@ -161888,15 +161752,15 @@
         113.5497023
       ],
       [
-        22.212506,
-        113.5503824
-      ],
-      [
-        22.212461800000003,
-        113.55071570000001
+        22.21250862370984,
+        113.55036263936809
       ]
     ],
     "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -161905,12 +161769,24 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 105.39
+    "length": 68.67
   },
   {
-    "id": "road_3684",
+    "id": "road_3683_b",
     "name": "祐漢新村第八街 Rua Oito do Bairro Iao Hon",
     "path": [
+      [
+        22.21250862370984,
+        113.55036263936809
+      ],
+      [
+        22.212506,
+        113.5503824
+      ],
+      [
+        22.212461800000003,
+        113.55071570000001
+      ],
       [
         22.212461800000003,
         113.55071570000001
@@ -161923,13 +161799,17 @@
     "lanesForward": [
       {
         "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 37.64
+    "length": 74.35
   },
   {
     "id": "road_3685",
@@ -162113,6 +161993,10 @@
       ]
     ],
     "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "right",
         "label": "右轉"
@@ -162627,27 +162511,7 @@
       [
         22.209316,
         113.55563730000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "tertiary",
-    "oneway": true,
-    "length": 129.82
-  },
-  {
-    "id": "road_3703",
-    "name": "勞動節大馬路 Avenida 1 de Maio",
-    "path": [
+      ],
       [
         22.209316,
         113.55563730000001
@@ -162657,33 +162521,45 @@
         113.5556614
       ],
       [
+        22.20925733939938,
+        113.55570823157403
+      ]
+    ],
+    "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
+      {
+        "icon": "straight_right",
+        "label": "直走/右轉"
+      }
+    ],
+    "lanesBackward": [],
+    "highway": "tertiary",
+    "oneway": true,
+    "length": 139.61
+  },
+  {
+    "id": "road_3703_b",
+    "name": "勞動節大馬路 Avenida 1 de Maio",
+    "path": [
+      [
+        22.20925733939938,
+        113.55570823157403
+      ],
+      [
         22.209257200000003,
         113.55570840000001
       ],
       [
         22.208491900000002,
         113.55663360000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "tertiary",
-    "oneway": true,
-    "length": 137.54
-  },
-  {
-    "id": "road_3704",
-    "name": "勞動節大馬路 Avenida 1 de Maio",
-    "path": [
+      ],
       [
         22.208491900000002,
         113.55663360000001
@@ -162699,18 +162575,22 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "left",
+        "label": "左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       },
       {
         "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "label": "直走/右轉"
       }
     ],
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 11.33
+    "length": 139.07
   },
   {
     "id": "road_3705",
@@ -163154,7 +163034,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 95.26,
+    "length": 95.27,
     "junction": "roundabout",
     "circularDirection": "right"
   },
@@ -164391,12 +164271,12 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "straight",
+        "label": "直走"
       },
       {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
@@ -165139,6 +165019,10 @@
       {
         "icon": "straight_left",
         "label": "直走 / 左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
       }
     ],
     "lanesBackward": [],
@@ -165215,48 +165099,28 @@
     "length": 47.74
   },
   {
-    "id": "road_3761",
-    "name": "勞動節大馬路 Avenida 1 de Maio",
-    "path": [
-      [
-        22.2107129,
-        113.55394860000001
-      ],
-      [
-        22.210225100000002,
-        113.55453840000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "tertiary",
-    "oneway": true,
-    "length": 81.42
-  },
-  {
     "id": "road_3762",
     "name": "勞動節大馬路 Avenida 1 de Maio",
     "path": [
       [
-        22.210225100000002,
-        113.55453840000001
+        22.210147000000003,
+        113.55463270000001
       ],
       [
         22.2101949,
         113.55457480000001
       ],
       [
-        22.210147000000003,
-        113.55463270000001
+        22.210225100000002,
+        113.55453840000001
+      ],
+      [
+        22.210225100000002,
+        113.55453840000001
+      ],
+      [
+        22.2107129,
+        113.55394860000001
       ]
     ],
     "lanesForward": [
@@ -165276,7 +165140,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 13.03
+    "length": 94.44
   },
   {
     "id": "road_3763",
@@ -167331,7 +167195,7 @@
     "lanesBackward": [],
     "highway": "tertiary",
     "oneway": true,
-    "length": 114.98
+    "length": 114.99
   },
   {
     "id": "road_3807",
@@ -168801,7 +168665,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 276.32
+    "length": 276.31
   },
   {
     "id": "road_3840",
@@ -168977,7 +168841,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 253.97
+    "length": 253.98
   },
   {
     "id": "road_3843",
@@ -169033,7 +168897,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 100.33
+    "length": 100.32
   },
   {
     "id": "road_3844",
@@ -169097,7 +168961,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 154.87
+    "length": 154.88
   },
   {
     "id": "road_3845",
@@ -169455,8 +169319,8 @@
     ],
     "lanesForward": [
       {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
+        "icon": "straight",
+        "label": "直走"
       },
       {
         "icon": "straight_right",
@@ -173024,7 +172888,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 558.58
+    "length": 558.57
   },
   {
     "id": "road_3940",
@@ -174248,7 +174112,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 103.25,
+    "length": 103.24,
     "junction": "roundabout"
   },
   {
@@ -174461,7 +174325,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 102.93
+    "length": 102.92
   },
   {
     "id": "road_3972",
@@ -174821,7 +174685,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 384.1
+    "length": 384.11
   },
   {
     "id": "road_3978",
@@ -175035,7 +174899,7 @@
     "lanesBackward": [],
     "highway": "service",
     "oneway": true,
-    "length": 319.86
+    "length": 319.87
   },
   {
     "id": "road_3982",
@@ -176995,7 +176859,7 @@
     "lanesBackward": [],
     "highway": "service",
     "oneway": true,
-    "length": 169.07
+    "length": 169.06
   },
   {
     "id": "road_4026",
@@ -177127,7 +176991,7 @@
     "lanesBackward": [],
     "highway": "service",
     "oneway": true,
-    "length": 179.37
+    "length": 179.36
   },
   {
     "id": "road_4029",
@@ -178483,42 +178347,6 @@
     "highway": "primary",
     "oneway": true,
     "length": 3.72
-  },
-  {
-    "id": "road_4061",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1963785,
-        113.5559709
-      ],
-      [
-        22.1962921,
-        113.55590560000002
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 11.73
   },
   {
     "id": "road_4062",
@@ -182427,7 +182255,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 40.32
+    "length": 40.33
   },
   {
     "id": "road_4173",
@@ -182899,34 +182727,6 @@
     "highway": "tertiary",
     "oneway": true,
     "length": 71.84
-  },
-  {
-    "id": "road_4187",
-    "name": "勞動節大馬路 Avenida 1 de Maio",
-    "path": [
-      [
-        22.2110364,
-        113.5535576
-      ],
-      [
-        22.210979400000003,
-        113.55362650000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "tertiary",
-    "oneway": true,
-    "length": 9.51
   },
   {
     "id": "road_4188",
@@ -183711,7 +183511,7 @@
     ],
     "highway": "service",
     "oneway": true,
-    "length": 1227.69,
+    "length": 1227.68,
     "reversed": true
   },
   {
@@ -187215,7 +187015,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 182.58
+    "length": 182.59
   },
   {
     "id": "road_4294",
@@ -187723,7 +187523,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 149.85
+    "length": 149.84
   },
   {
     "id": "road_4308",
@@ -189988,14 +189788,6 @@
       ]
     ],
     "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
       {
         "icon": "straight",
         "label": "直走"
@@ -192652,42 +192444,6 @@
     "length": 36.86
   },
   {
-    "id": "road_4431",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1976738,
-        113.55694910000001
-      ],
-      [
-        22.197638800000004,
-        113.55692300000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 4.73
-  },
-  {
     "id": "road_4432",
     "name": "海港前地 Largo do Terminal Marítimio",
     "path": [
@@ -193716,7 +193472,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 198.19
+    "length": 198.2
   },
   {
     "id": "road_4459",
@@ -194000,7 +193756,7 @@
     "lanesBackward": [],
     "highway": "secondary",
     "oneway": true,
-    "length": 342.25
+    "length": 342.26
   },
   {
     "id": "road_4464",
@@ -194435,7 +194191,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 193.5
+    "length": 193.49
   },
   {
     "id": "road_4476",
@@ -194854,7 +194610,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 249.64
+    "length": 249.63
   },
   {
     "id": "road_4486",
@@ -195841,7 +195597,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 151.87
+    "length": 151.88
   },
   {
     "id": "road_4514",
@@ -196103,7 +195859,7 @@
     ],
     "highway": "residential",
     "oneway": false,
-    "length": 122.11
+    "length": 122.12
   },
   {
     "id": "road_4522",
@@ -198024,7 +197780,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 131.72
+    "length": 131.73
   },
   {
     "id": "road_4571",
@@ -198768,7 +198524,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 115.21
+    "length": 115.22
   },
   {
     "id": "road_4592",
@@ -200069,7 +199825,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 214.35
+    "length": 214.34
   },
   {
     "id": "road_4626",
@@ -200102,46 +199858,6 @@
     "highway": "primary",
     "oneway": true,
     "length": 79.2
-  },
-  {
-    "id": "road_4627",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.1962921,
-        113.55590560000002
-      ],
-      [
-        22.196235400000003,
-        113.5558627
-      ],
-      [
-        22.196222000000002,
-        113.55585270000002
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 9.51
   },
   {
     "id": "road_4628",
@@ -200241,7 +199957,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 149.85
+    "length": 149.86
   },
   {
     "id": "road_4631",
@@ -200746,7 +200462,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 132.11
+    "length": 132.12
   },
   {
     "id": "road_4643",
@@ -200762,6 +200478,10 @@
       ]
     ],
     "lanesForward": [
+      {
+        "icon": "straight",
+        "label": "直走"
+      },
       {
         "icon": "straight",
         "label": "直走"
@@ -201314,7 +201034,7 @@
     ],
     "highway": "secondary",
     "oneway": false,
-    "length": 388.86
+    "length": 388.85
   },
   {
     "id": "road_4660",
@@ -202344,7 +202064,7 @@
     "lanesBackward": [],
     "highway": "residential",
     "oneway": true,
-    "length": 110.37
+    "length": 110.36
   },
   {
     "id": "road_4684",
@@ -205499,7 +205219,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 277.72
+    "length": 277.73
   },
   {
     "id": "road_4766",
@@ -207418,66 +207138,6 @@
     "length": 3.17
   },
   {
-    "id": "road_4820",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.198304200000003,
-        113.55750650000002
-      ],
-      [
-        22.1982627,
-        113.55744340000001
-      ],
-      [
-        22.1982165,
-        113.55738420000002
-      ],
-      [
-        22.198165200000002,
-        113.55732920000001
-      ],
-      [
-        22.198110500000002,
-        113.5572788
-      ],
-      [
-        22.1980633,
-        113.55724320000002
-      ],
-      [
-        22.197979600000004,
-        113.55718000000002
-      ],
-      [
-        22.197890700000002,
-        113.5571129
-      ],
-      [
-        22.1978502,
-        113.5570823
-      ],
-      [
-        22.1976738,
-        113.55694910000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 91.22
-  },
-  {
     "id": "road_4821",
     "name": "高美士街 Rua de Luís Gonzaga Gomes",
     "path": [
@@ -207615,10 +207275,30 @@
       {
         "icon": "straight",
         "label": "直走"
-      },
+      }
+    ],
+    "lanesBackward": [],
+    "highway": "primary",
+    "oneway": true,
+    "length": 197.77
+  },
+  {
+    "id": "road_4824_a",
+    "name": "友誼大馬路 Avenida da Amizade",
+    "path": [
+      [
+        22.192785,
+        113.5531744
+      ],
+      [
+        22.193025929962708,
+        113.5533562823735
+      ]
+    ],
+    "lanesForward": [
       {
-        "icon": "straight",
-        "label": "直走"
+        "icon": "straight_left",
+        "label": "直走/左轉"
       },
       {
         "icon": "straight",
@@ -207628,15 +207308,15 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 197.77
+    "length": 32.69
   },
   {
-    "id": "road_4824",
+    "id": "road_4824_b_a_a",
     "name": "友誼大馬路 Avenida da Amizade",
     "path": [
       [
-        22.192785,
-        113.5531744
+        22.193025929962708,
+        113.5533562823735
       ],
       [
         22.193029000000003,
@@ -207653,35 +207333,7 @@
       [
         22.193380200000004,
         113.5536239
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 80.76
-  },
-  {
-    "id": "road_4825",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.193380200000004,
         113.5536239
@@ -207689,27 +207341,7 @@
       [
         22.194349600000002,
         113.55435600000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 131.53
-  },
-  {
-    "id": "road_4826",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.194349600000002,
         113.55435600000001
@@ -207717,35 +207349,15 @@
       [
         22.195288800000004,
         113.55506530000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 127.43
-  },
-  {
-    "id": "road_4827",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
+      [
+        22.195288800000004,
+        113.55506530000001
+      ],
+      [
+        22.196263100000003,
+        113.55580110000001
+      ],
       [
         22.196263100000003,
         113.55580110000001
@@ -207755,19 +207367,11 @@
         113.55584940000001
       ],
       [
-        22.1970603,
-        113.5564032
+        22.196329005230805,
+        113.55585083905733
       ]
     ],
     "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
       {
         "icon": "straight",
         "label": "直走"
@@ -207780,10 +207384,46 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 108.17
+    "length": 448.17
   },
   {
-    "id": "road_4828",
+    "id": "road_4824_b_b",
+    "name": "友誼大馬路 Avenida da Amizade",
+    "path": [
+      [
+        22.1970603,
+        113.5564032
+      ],
+      [
+        22.19683487894563,
+        113.55623293516106
+      ],
+      [
+        22.19683487894563,
+        113.55623293516106
+      ],
+      [
+        22.196329005230805,
+        113.55585083905733
+      ]
+    ],
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [],
+    "highway": "primary",
+    "oneway": true,
+    "length": 99.23
+  },
+  {
+    "id": "road_4828_a",
     "name": "友誼大馬路 Avenida da Amizade",
     "path": [
       [
@@ -207793,71 +207433,7 @@
       [
         22.197501600000002,
         113.5567364
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_left",
-        "label": "直走 / 左轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 59.87
-  },
-  {
-    "id": "road_4829",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
-      [
-        22.195288800000004,
-        113.55506530000001
       ],
-      [
-        22.196263100000003,
-        113.55580110000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      },
-      {
-        "icon": "straight_right",
-        "label": "直走 / 右轉"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 132.2
-  },
-  {
-    "id": "road_4830",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
       [
         22.197501600000002,
         113.5567364
@@ -207873,35 +207449,7 @@
       [
         22.1981463,
         113.55722360000001
-      ]
-    ],
-    "lanesForward": [
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      },
-      {
-        "icon": "straight",
-        "label": "直走"
-      }
-    ],
-    "lanesBackward": [],
-    "highway": "primary",
-    "oneway": true,
-    "length": 87.49
-  },
-  {
-    "id": "road_4831",
-    "name": "友誼大馬路 Avenida da Amizade",
-    "path": [
+      ],
       [
         22.1981463,
         113.55722360000001
@@ -207935,8 +207483,8 @@
         113.5576915
       ],
       [
-        22.1990182,
-        113.5596981
+        22.198707474850917,
+        113.55858866746593
       ]
     ],
     "lanesForward": [
@@ -207952,7 +207500,35 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 275.9
+    "length": 303.93
+  },
+  {
+    "id": "road_4828_b",
+    "name": "友誼大馬路 Avenida da Amizade",
+    "path": [
+      [
+        22.198707474850917,
+        113.55858866746593
+      ],
+      [
+        22.1990182,
+        113.5596981
+      ]
+    ],
+    "lanesForward": [
+      {
+        "icon": "straight_left",
+        "label": "直走/左轉"
+      },
+      {
+        "icon": "straight",
+        "label": "直走"
+      }
+    ],
+    "lanesBackward": [],
+    "highway": "primary",
+    "oneway": true,
+    "length": 119.33
   },
   {
     "id": "road_4832",
@@ -208914,7 +208490,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 229.12
+    "length": 229.11
   },
   {
     "id": "road_4858",
@@ -209481,7 +209057,7 @@
     "lanesBackward": [],
     "highway": "primary",
     "oneway": true,
-    "length": 141.48
+    "length": 141.49
   },
   {
     "id": "road_4875",
